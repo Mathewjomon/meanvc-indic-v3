@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4258388600389373   clip hi_te00000_0170 (6.1 s)
+speaker B (voice)   ml_S4259695500301137   clip ml_te00001_0140 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            इसका लक्ष्य व्यक्ति का विकास औ प्रकृति का संतुलन है भासा संस्कृत की वाहिका होती है
+recognised (IndicConformer) इसका लक्ष्य व्यक्ति का विकास और प्रकृति का संतुलन है भाषा संस्कृति की वाहिका होती है
+
+translation                വ്യക്തിയുടെ വികസനവും പ്രകൃതിയുടെ സന്തുലിതാവസ്ഥയും ലക്ഷ്യമിടുന്ന ഭാഷ സംസ്കാരത്തിന്റെ ചാനലാണ്.
+translation of real text   വ്യക്തിയുടെ വികസനവും പ്രകൃതിയുടെ സന്തുലിതാവസ്ഥയും ലക്ഷ്യമിടുന്ന ഭാഷ സംസ്കൃതത്തിൻറെ ചാനലാണ്.
+MMS hears our output as    വ്യക്തിയുടെ വികസനവും പ്രകൃതിയുടെ സന്തുനിതാവസ്ഥയും ലക്ഷ്യമിടുന്ന ഭാഷ സംസ്കാരത്തിന്റെ ചാരനാണ്
+
+voice similarity to B (reference clip): TTS 0.200 | original MeanVC 0.717 | ours 0.797   (two real clips of B: 0.930)
+similarity to A (leakage):              ours 0.066   (A vs B before: 0.040)

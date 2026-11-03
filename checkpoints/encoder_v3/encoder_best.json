@@ -1,0 +1,13 @@
+{
+  "epoch": 83,
+  "val_cer": {
+    "hi": 13.403855195110484,
+    "ml": 24.308600703338687,
+    "ta": 21.801985981308412
+  },
+  "avg_cer": 19.83814729325253,
+  "chunk": 5,
+  "left_chunks": 2,
+  "streaming_conv": true,
+  "vocab": "data/vocab.txt"
+}

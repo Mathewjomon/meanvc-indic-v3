@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4256620800339114   clip ta_te00000_0014 (9.1 s)
+speaker B (voice)   ml_S4259627600301041   clip ml_te00001_0089 (reference)
+language detected   Tamil (100% of letters)
+
+real transcript            அதே மாரி ஆல் கிளியர் ஆயிடிச்சினா பரவாயில்ல இதுல வந்து நானு ஃபிஃப்ட்டி ஃபோரோ ஃபிஃப்ட்டி ஃபைவ் பர்செண்ட்டேஜோ என்னமோதான் எடுத்துருக்கேன் ரொம்ப கம்மியா தான் எடுத்துருக்கேன்
+recognised (IndicConformer) அதே மாதிரி ஆள் கிளியர் ஆகிடுச்சுன்னா பரவாயில்ல இதில் வந்து நான் ஃபிஃப்டி ஃபோர் ஃபிஃப்டி ஃபைவ் பர்சன்டேஜாக நம்ம தான் எடுத்திருக்கேன் ரொம்ப கம்மியாக எடுத்திருக்கேன்
+
+translation                അതേ വ്യക്തിയെ ക്ലിയർ ചെയ്തിട്ടുണ്ടെങ്കിൽ കുഴപ്പമില്ല, അതിൽ ഞാൻ നിങ്ങളുടേത് ഫിഫ്റ്റി ഫോർ ഫിഫ്റ്റി ഫൈവ് പെർസെന്റസ് ആയി എടുത്തിരുന്നു.
+translation of real text   അതേ മാർക്ക് ഓൾ ക്ലിയർ ഓയിഡിച്ചിൻ കുഴപ്പമില്ല, ഞാൻ എന്താണ് എടുത്തത്, ഞാൻ അത് വളരെ മോശമായി എടുത്തിട്ടുണ്ട്.
+MMS hears our output as    അതെ വ്യക്തിയെ ക്ലിയർ ചെയ്തിട്ടുണ്ടെങ്ക് കുഴപ്പമില്ല അതിൽ ഞാൻ നിങ്ങളുടേത് ഫിട്ടി-ഫോർ ഫിട്ടി ൈവ പസൻ്റസ് തായി എടുത്തിരുന്നു
+
+voice similarity to B (reference clip): TTS 0.101 | original MeanVC 0.667 | ours 0.674   (two real clips of B: 0.762)
+similarity to A (leakage):              ours 0.278   (A vs B before: 0.325)

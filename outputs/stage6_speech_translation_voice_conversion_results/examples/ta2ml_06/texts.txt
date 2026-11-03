@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4259418900342635   clip ta_te00000_0173 (6.0 s)
+speaker B (voice)   ml_S4259451300377433   clip ml_te00001_0004 (reference)
+language detected   Tamil (100% of letters)
+
+real transcript            ஆறாயிரத்தி முந்நூறுவாங்களா இப்ப கைல இருக்கு சார் இங்க கொண்டு வந்து குடுத்துட்டு அவுங்க நீங்க டெலிவரி பண்ணும்போது நா உங்களுக்கு கைல குடுத்துருவேன் சார்
+recognised (IndicConformer) ஆறாயிரத்து முந்நூறுவாங்களா கையில் இருக்குது சார் இங்கே வந்து கொடுத்துட்டு அவங்க நீங்கள் டெலிவரி பண்ணும்போது நான் உங்களுக்கு கையில் கொடுத்துருவேன் சார்
+
+translation                കയ്യിൽ ആറോ മൂന്നോ നൂറുകണക്കിന് സാധനങ്ങളുണ്ട്, സാർ, ഇവിടെ വന്ന് അത് നൽകുക, നിങ്ങൾ അത് വിതരണം ചെയ്യുമ്പോൾ ഞാൻ അത് നിങ്ങൾക്ക് നൽകും, സാർ.
+translation of real text   ഇപ്പോൾ കയ്യിൽ ആറോ മൂന്നോ ആണോ, സാർ, ഞാൻ നിങ്ങൾക്ക് കൈകൊടുക്കും, നിങ്ങൾ അത് വിതരണം ചെയ്യുമ്പോൾ, ഞാൻ ഇവിടെ എത്തിക്കും, കിടക്കും, സാർ.
+MMS hears our output as    കയ്യിൽ ആോ 3ോ ൂ ഗണക്കിന് സാധനങ്ങളിെ ചാർ ഇവിടെ വന്ന് അത് തൽക്കുക നിങ്ങൾ അത് വിധരണം ചെയ്യുമ്പോൾ ഞാൻ അത് നിങ്ങൾക്ക് നൽകകും സാർ
+
+voice similarity to B (reference clip): TTS 0.182 | original MeanVC 0.722 | ours 0.773   (two real clips of B: 0.761)
+similarity to A (leakage):              ours 0.466   (A vs B before: 0.423)

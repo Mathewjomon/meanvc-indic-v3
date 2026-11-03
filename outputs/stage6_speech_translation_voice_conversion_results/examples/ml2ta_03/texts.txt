@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4256368500328803   clip ml_te00000_0072 (6.3 s)
+speaker B (voice)   ta_S4257394700369395   clip ta_te00000_0099 (reference)
+language detected   Malayalam (100% of letters)
+
+real transcript            കൃഷിയും മാറ്റ് കാര്യങ്ങളും നല്ല രീതിക്ക് തന്നെ മുന്നോട്ട് പോകും അപ്പോ നമ്മുടെ നാട്ടിൽ കൃഷിക്കാർക്ക് ഒരു ബുദ്ധിമുട്ടോ കാര്യങ്ങളോ ഉണ്ടാവാണ്ട്
+recognised (IndicConformer) കൃഷിയും മറ്റ് കാര്യങ്ങളും നല്ല രീതിക്ക് തന്നെ മുന്നോട്ട് പോകുക അപ്പോൾ നമ്മുടെ നാട്ടിൽ കൃഷിക്കാർക്കോ ഒരു ബുദ്ധിമുട്ടോ കാര്യങ്ങളോ ഉണ്ടാവാണ്ട്
+
+translation                விவசாயம் மற்றும் பிற விஷயங்களை நல்ல வழியில் தொடருங்கள், அப்போது நமது நாட்டில் உள்ள விவசாயிகளுக்கு ஒரு சிக்கல் அல்லது பிரச்சினைகள் இருக்கும்.
+translation of real text   விவசாயம் மற்றும் மண் விவகாரங்கள் நல்ல வழியில் தொடரும், எனவே நமது நாட்டில் விவசாயிகளுக்கு ஒரு சிக்கல் அல்லது சிக்கல் இருக்கும்.
+MMS hears our output as    விவசாயம்அற்சும் பிற விஷயங்களை நல்ல வழியில் தொடருங்கள் அப்போது நமது நாட்டில் ுள்ள விவசாய்களுக்கு ஒறு சிக்கல் அல்லது பச்சினைகள் இருக்கும்
+
+voice similarity to B (reference clip): TTS 0.097 | original MeanVC 0.702 | ours 0.804   (two real clips of B: 0.726)
+similarity to A (leakage):              ours 0.254   (A vs B before: 0.271)

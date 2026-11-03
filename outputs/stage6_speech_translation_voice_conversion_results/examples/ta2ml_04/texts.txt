@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4259410500335240   clip ta_te00000_0158 (7.4 s)
+speaker B (voice)   ml_S4256324400328999   clip ml_te00000_0059 (reference)
+language detected   Tamil (99% of letters)
+
+real transcript            ஆமா ஆமாங் சார் ஆ ஃபோட்டோ எடுத்து வச்சிருக்கேன் ஆமா ஓபன் பண்ணப்ப என்னென்ன கொறைஞ்சிதோ எல்லாத்தையும் ஃபோட்டோ எடுத்து வச்சிருக்கேன்
+recognised (IndicConformer) ஆமாம் ஆமாம் சார் நான் ஃபோட்டோ எடுத்து வச்சுருக்கேன் ஆமாம் ஆமாம் ஓப்பன் பண்ணப்பே எதனா குறைஞ்சிருந்தாலும் எடுத்து ஃபோட்டோ எடுத்து வச்சுருக்கேன்
+
+translation                അതെ, സർ, ഞാൻ ഫോട്ടോയെടുത്തു, അതെ, ഞാൻ ഓപ്പണിൽ എന്തെങ്കിലും കുറവാണെങ്കിൽ അത് എടുത്തുകൊണ്ട് ഞാൻ ഫോട്ടോ എടുത്തു.
+translation of real text   ഓ ആം സർ ഓ ഞാൻ ഫോട്ടോ എടുത്തിട്ടുണ്ട്, ഓപ്പണിന് വേണ്ടി എന്തെല്ലാം വൃത്തികെട്ടതാണോ എന്ന് ഞാൻ എടുത്തിട്ടുണ്ട്.
+MMS hears our output as    അത് സർജജൻ ഫോട്പോ എടുത്തു അതെ ഞാൻ ഒപ്പണ്ം ലന്ധെങ്കലും പുറവാണെങ്കിൽ അത് എടുത്തുകൊണ്ട് ഞാൻ ഫോട്ട്പോ എടുത്തു
+
+voice similarity to B (reference clip): TTS 0.238 | original MeanVC 0.666 | ours 0.730   (two real clips of B: 0.562)
+similarity to A (leakage):              ours 0.197   (A vs B before: 0.199)

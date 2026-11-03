@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4259631200357141   clip ml_te00001_0101 (3.3 s)
+speaker B (voice)   hi_S4258486700370849   clip hi_te00001_0011 (reference)
+language detected   Malayalam (100% of letters)
+
+real transcript            ഒരുപാട് മെച്ചപ്പെടുണ്ട് ഒരുപാട് മെച്ചപ്പെടണ്ടതുണ്ട് ഒരുപാട്
+recognised (IndicConformer) ഒരുപാട് മെച്ചപ്പെടുന്നുണ്ട് ഒരുപാട് മെച്ചപ്പെടേണ്ടതുണ്ട് ഒരുപാട്
+
+translation                बहुत कुछ बेहतर हो रहा है और बहुत कुछ बेहतर होने की जरूरत है।
+translation of real text   बहुत सुधार हुआ है और बहुत सुधार करने की आवश्यकता है।
+MMS hears our output as    बहुत कुछ बेहतर हो रहा है और बहुत कुछ बेहतर होने की ज़रूरत है
+
+voice similarity to B (reference clip): TTS 0.074 | original MeanVC 0.697 | ours 0.764   (two real clips of B: 0.386)
+similarity to A (leakage):              ours 0.063   (A vs B before: 0.154)

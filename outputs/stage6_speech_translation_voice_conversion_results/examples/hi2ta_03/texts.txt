@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4259898100372712   clip hi_te00001_0130 (10.8 s)
+speaker B (voice)   ta_S4258842100383591   clip ta_te00000_0120 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            जैसे यूट्यूब पर पापा मम्मी किचन है और टी वी में चैनल है जैसे खाना खजाना यह हमें खाना बतनाने का कार्यक्रम दिखाते हैं
+recognised (IndicConformer) जैसे यूट्यूब पर पापा मम्मी किचन है और टी वी में चैनल है जैसे खाना खजाना ये हमें खाना बनाने का कार्यक्रम दिखाते हैं
+
+translation                யூடியூபில் பாப்பா மம்மி சமையலறை மற்றும் தொலைக்காட்சியில் உணவு பொக்கிஷங்கள் போன்ற சேனல்கள் உள்ளன, இவை சமையல் அட்டவணையை நமக்குக் காட்டுகின்றன.
+translation of real text   யூடியூபில் பாப்பா மம்மி சமையலறை மற்றும் தொலைக்காட்சியில் உணவுக் கருவூலம் போன்ற சேனல்கள் உள்ளன, இது எங்களுக்கு உணவு நிகழ்ச்சியைக் காட்டுகிறது.
+MMS hears our output as    யூடியூபில் பாப்பமம்மி சமையலரை மற்றும் தொலைக்காட்சியில் உளவு பொக்கீஷங்கள் போன்ற சேனல்கள் உள்ளன இவை சமையல் அட்டவனையை நமக்குக் காட்டுகின்றன
+
+voice similarity to B (reference clip): TTS 0.317 | original MeanVC 0.649 | ours 0.790   (two real clips of B: 0.936)
+similarity to A (leakage):              ours 0.112   (A vs B before: 0.043)

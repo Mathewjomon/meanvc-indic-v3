@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4257156700348229   clip ta_te00000_0069 (3.1 s)
+speaker B (voice)   ml_S4257213200305882   clip ml_te00000_0113 (reference)
+language detected   Tamil (100% of letters)
+
+real transcript            ஸோ எனக்கு இப்ப சமையல் ரொம்ப நல்லாவே தெரிஞ்சிச்சி
+recognised (IndicConformer) ஸோ எனக்கு இப்போ சமையல் ரொம்ப நல்லாவே தெரிஞ்சிச்சு
+
+translation                സോ എനിക്ക് ഇപ്പോൾ പാചകം നന്നായി അറിയാം.
+translation of real text   സോ എനിക്ക് ഇപ്പോൾ പാചകം നന്നായി അറിയാം.
+MMS hears our output as    സോ എനിക്കിപ്പോൾ പാചകം നന്നായറിയ
+
+voice similarity to B (reference clip): TTS 0.081 | original MeanVC 0.557 | ours 0.702   (two real clips of B: 0.891)
+similarity to A (leakage):              ours 0.147   (A vs B before: 0.317)

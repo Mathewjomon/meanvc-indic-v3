@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4258486700370849   clip hi_te00001_0008 (10.9 s)
+speaker B (voice)   ml_S4259485400386489   clip ml_te00001_0038 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            हमारे छेत्र में कोविड महामारी बहुत तेजी से फैली थी मैंने अपने परिवार को बचाने के लिए उनको गरम पानी पिलाया था और बाहर नहीं जाने दिया ता और अपने
+recognised (IndicConformer) हमारे क्षेत्र में कोविड महामारी बहुत तेज़ी से फैली थी मैंने अपने परिवार को बचाने के लिए उनको गर्म पानी पिलाया था और बाहर नहीं जाने दिया था और अपने
+
+translation                ഞങ്ങളുടെ പ്രദേശത്ത് കോവിഡ് പകർച്ചവ്യാധി വളരെ വേഗത്തിൽ പടർന്നു, എന്റെ കുടുംബത്തെ രക്ഷിക്കാൻ ഞാൻ അവർക്ക് ചൂടുവെള്ളം കുടിച്ചു, പുറത്തുപോകാൻ അനുവദിച്ചില്ല, എന്റെ
+translation of real text   ഞങ്ങളുടെ പ്രദേശത്ത് കോവിഡ് മഹാമാരി അതിവേഗം പടർന്നു, എന്റെ കുടുംബത്തെ രക്ഷിക്കാൻ ഞാൻ അവർക്ക് ചൂടുവെള്ളം കുടിച്ചു, അവരെ പുറത്തിറങ്ങാൻ അനുവദിച്ചില്ല.
+MMS hears our output as    ഞങ്ങളുടെ പ്രദേശത്ത് കോവിഡ് പതർച്ചവ്യാധി വളരെ വേരത്തിൽ പഠന്നു എന്റെ കുടുംബത്ത രക്ഷിക്കൻ ഞാൻ അവർക്ക് ചൂടുവെല്ളം കോടിച്ചു കുറത്തുപോകാൻ അലുവദിച്ചില്ല എന്റെ
+
+voice similarity to B (reference clip): TTS 0.117 | original MeanVC 0.570 | ours 0.740   (two real clips of B: 0.683)
+similarity to A (leakage):              ours 0.196   (A vs B before: 0.268)

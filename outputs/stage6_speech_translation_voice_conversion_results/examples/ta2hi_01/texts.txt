@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4256700400339825   clip ta_te00000_0031 (11.9 s)
+speaker B (voice)   hi_S4258388600389373   clip hi_te00000_0182 (reference)
+language detected   Tamil (99% of letters)
+
+real transcript            எல்லா ஒன்னா சமையல் ஆள் போட்டு எல்லாம் சமையல் செய்வாங்க எல்லா ஒன்னா ஒக்காந்து சாப்புடுவோம் இந்தமாரி எல்லாம் மொதல்லலாம் போயிட்ருக்கும் இப்பலாம் வந்துங்க ரிசப்ஷன்னு சொல்லிட்டு ஒன்னு வைக்கிறாங்க
+recognised (IndicConformer) எல்லாம் ஒன்றா சமையலில் ஆள் போட்டு எல்லாம் சமையல் செய்வாங்க எல்லாம் ஒன்றா உட்காந்து சாப்பிடுவோம் இந்த மாதிரி எல்லாம் முதல்ல போயிட்டு இருக்கும் இப்போலாம் வந்துங்க ரிசப்ஷன் சொல்லிவிட்டு ஒன்று வைக்கிறாங்க
+
+translation                सब कुछ खाना बनाते हैं और सब कुछ बनाते हैं, सब कुछ खाते हैं और खाते हैं।
+translation of real text   हम सब कुछ पाक करते हैं, सब कुछ पकाते हैं, और सब कुछ खाते हैं, और अब हम स्वागत के लिए आते हैं।
+MMS hears our output as    सब कुछ खाना बनाते हैं और सब कुछ बनाते हैं सब कुछ खाते हैं और खाते हैं
+
+voice similarity to B (reference clip): TTS 0.152 | original MeanVC 0.700 | ours 0.723   (two real clips of B: 0.878)
+similarity to A (leakage):              ours 0.005   (A vs B before: 0.063)

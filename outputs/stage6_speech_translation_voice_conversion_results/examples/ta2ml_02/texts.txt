@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4257394700369395   clip ta_te00000_0095 (9.5 s)
+speaker B (voice)   ml_S4258010700366114   clip ml_te00000_0133 (reference)
+language detected   Tamil (100% of letters)
+
+real transcript            உங்கள் கார்டில் உள்ள கோல்கேட் ஆக்டிவ் சால்ட் டூத்பேஸ்ட் தற்போது இல்லை தயவுசெய்து அதை பின்னர் ஆர்டர் செய்யவும்
+recognised (IndicConformer) உங்கள் கார்ட்டில் உள்ள கோல்கேட் ஆக்டிவ் சால்ட் டூத்பேஸ்ட் தற்போது இல்லை தயவுசெய்து அதை பின்னர் ஆர்டர் செய்யவும்
+
+translation                നിങ്ങളുടെ കാർട്ടിൽ നിലവിൽ ഗോൾഗേറ്റ് ആക്റ്റീവ് സാൾട്ട് ഡത്ത് പേസ്റ്റ് ഇല്ല, ദയവായി പിന്നീട് ഓർഡർ ചെയ്യുക.
+translation of real text   നിങ്ങളുടെ കാർഡിൽ നിലവിൽ ഗോൾഗേറ്റ് ആക്റ്റീവ് സാൾട്ട് ഡത്ത് പേസ്റ്റ് ഇല്ല, ദയവായി പിന്നീട് ഓർഡർ ചെയ്യുക.
+MMS hears our output as    നിങ്ങളുടെ കർട്ടിൽ നിലവിൽ ഗോഡിയട്ട് ാക്ടീവ് സാർക്ട് ഡെത്ത പ്രേസ്റ്റില ദൈവായി പിന്നി ഡോഡർ ചെയ്യുക
+
+voice similarity to B (reference clip): TTS 0.237 | original MeanVC 0.639 | ours 0.783   (two real clips of B: 0.868)
+similarity to A (leakage):              ours 0.094   (A vs B before: 0.185)

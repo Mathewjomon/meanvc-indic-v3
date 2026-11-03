@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4259627600301041   clip ml_te00001_0072 (5.3 s)
+speaker B (voice)   ta_S4259935800305390   clip ta_te00000_0258 (reference)
+language detected   Malayalam (100% of letters)
+
+real transcript            നോർത്ത് ഇന്ത്യ ആയാലും സൗത്ത് ഇന്ത്യ ആയാലും അതിന് അതിൻ്റെതായ ഭൂപ്രകൃതി ഭംഗികളെല്ലാം
+recognised (IndicConformer) നോർത്ത് ഇന്ത്യ ആയാലും സൗത്ത് ഇന്ത്യ ആയാലും അതുതന്നെ അതിൻറേതായ ഭൂപ്രകൃതി ഭംഗികളെല്ലാം
+
+translation                அது வட இந்தியாவாக இருந்தாலும் சரி, தென்னிந்தியாக இருந்தாலும் சரி, அது அதன் சொந்த நிலப்பரப்பாகும்.
+translation of real text   அது வட இந்தியாவாக இருந்தாலும் சரி, தென்னிந்தியாக இருந்தாலும் சரி, அதற்கு அதன் சொந்த நிலப்பரப்பு உள்ளது.
+MMS hears our output as    அதுவட இந்தியாவாக இருந்தாலும் சரி தென்னிந்தியாக இருந்தாலும் சரி அது அதன் சொந்த நிலப்பெறர்பாகும்
+
+voice similarity to B (reference clip): TTS 0.307 | original MeanVC 0.549 | ours 0.706   (two real clips of B: 0.789)
+similarity to A (leakage):              ours 0.188   (A vs B before: 0.251)

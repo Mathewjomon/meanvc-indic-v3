@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4259898600358163   clip hi_te00001_0143 (7.3 s)
+speaker B (voice)   ta_S4259418900342635   clip ta_te00000_0180 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            जो दाल होती है उसमें अत्यधिक सब्जियाँ होती हैं जो मुझे काफ़ी पसंद हैं मैं अपने घर पर इडली सांभर
+recognised (IndicConformer) जो दाल होती है उसमें अत्यधिक सब्जियाँ होती हैं जो मुझे काफ़ी पसंद है मैं अपने घर पर इडली सांभर
+
+translation                பருப்பு வகைகள் நிறைய காய்கறிகளைக் கொண்டுள்ளன, அவை எனக்கு மிகவும் பிடிக்கும், நான் என் வீட்டில் உள்ள இட்லி சாம்பார்
+translation of real text   பருப்பு வகைகள் நிறைய காய்கறிகளைக் கொண்டுள்ளன, அவை எனக்கு மிகவும் பிடிக்கும், நான் என் வீட்டில் உள்ள இட்லி சாம்பார்
+MMS hears our output as    பருப்பு வகைகள் நிறைய காய்கறிகளைக் கொண்டுள்ளன அவை எனக்கு மிகவும் பிடிக்கும் நான் என் வீட்டில் உள்ளவீட்தி சாம்பார்
+
+voice similarity to B (reference clip): TTS 0.248 | original MeanVC 0.626 | ours 0.816   (two real clips of B: 0.782)
+similarity to A (leakage):              ours 0.111   (A vs B before: 0.108)

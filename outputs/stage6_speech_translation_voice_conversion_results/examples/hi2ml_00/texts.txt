@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4258858600387188   clip hi_te00001_0053 (10.8 s)
+speaker B (voice)   ml_S4259786000304613   clip ml_te00001_0167 (reference)
+language detected   Hindi (97% of letters)
+
+real transcript            गाँव से ही होता है और अपनी भीत प्रतिभा को बिकसित करने के लिए लोग गाँव की ही तरफ जा जा के सीखते हैं क्युकी यहाँ पे जादा
+recognised (IndicConformer) गाँव से ही होता है और अपनी प्रतिभा को विकसित करने के लिए लोग गाँव की ही तरफ ज़्यादा सीखते हैं क्योंकि यहाँ पे ज़्यादा
+
+translation                ഗ്രാമത്തിൽ നിന്നാണ് വരുന്നത്, ഇവിടെ കൂടുതൽ ഉള്ളതിനാൽ ആളുകൾ അവരുടെ കഴിവുകൾ വികസിപ്പിക്കുന്നതിനായി ഗ്രാമത്തിൽ തന്നെ കൂടുതൽ പഠിക്കുന്നു.
+translation of real text   ഗ്രാമത്തിൽ നിന്നാണ് വരുന്നത്, ആളുകൾ അവരുടെ ഭയപ്പെടുത്തുന്ന കഴിവുകൾ വികസിപ്പിക്കാൻ ഗ്രാമത്തിലേക്ക് പോകുകയും പഠിക്കുകയും ചെയ്യുന്നു.
+MMS hears our output as    രാമത്തിൽ നിന്നാണ് വരുന്നത് ഇവിടെ കൂടുതൽ ഉള്ളതിനാൽ ആളുകൾ അവരുടെ കഴിവുകൾ വികസിപ്പിക്കുന്നതിനായി ഗ്രാമത്തിൽ തന്നെ കൂടുതൽ പഠിക്കുന്നു
+
+voice similarity to B (reference clip): TTS 0.100 | original MeanVC 0.664 | ours 0.799   (two real clips of B: 0.727)
+similarity to A (leakage):              ours 0.022   (A vs B before: -0.036)

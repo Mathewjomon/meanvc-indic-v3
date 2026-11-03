@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4259695500301137   clip ml_te00001_0131 (4.3 s)
+speaker B (voice)   hi_S4259898100372712   clip hi_te00001_0135 (reference)
+language detected   Malayalam (97% of letters)
+
+real transcript            കാനഡ അമേരിക്ക ഇന്ത്യ പാകിസ്താൻ ചൈന
+recognised (IndicConformer) കാനഡ അമേരിക്ക ഇന്ത്യ പാക്കിസ്ഥാൻ ചൈന
+
+translation                कनाडा अमेरिका भारत पाकिस्तान चीन
+translation of real text   कनाडा अमेरिका भारत पाकिस्तान चीन
+MMS hears our output as    पनगा अमेरिका भारत पाकिस्तान जी
+
+voice similarity to B (reference clip): TTS 0.031 | original MeanVC 0.490 | ours 0.683   (two real clips of B: 0.889)
+similarity to A (leakage):              ours 0.214   (A vs B before: -0.011)

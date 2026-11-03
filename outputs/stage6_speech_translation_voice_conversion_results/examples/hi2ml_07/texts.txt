@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4259703700319935   clip hi_te00001_0100 (9.2 s)
+speaker B (voice)   ml_S4259900100347536   clip ml_te00001_0192 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            झांपे भोती सुंदर ज़गा हे जो मातारानी का दरबार हे झांपे घूमने की बहोत अच्छी ज़गा हे ओर बहोती अदुतीय चड़ाई वाला इस्तान हे
+recognised (IndicConformer) जहाँ पर बहुत ही सुंदर जगह है जो माता रानी का दरबार है जहाँ पर घूमने की बहुत अच्छी जगह है और बहुत ही अद्वुतीय चढ़ाई वाला स्थान है
+
+translation                വളരെ മനോഹരമായ സ്ഥലമായ മാതാ രാജ്ഞിയുടെ ദർബാർ സന്ദർശിക്കാൻ വളരെ മികച്ച സ്ഥലവും അതിശയകരമായ മലകയറ്റ സ്ഥലവുമാണ്.
+translation of real text   ജംപെ ഭോട്ടി സുന്ദരിയായ ജഗ്ഗയാണ് മാതാരാണിയുടെ ദർബാർ, ജംപെ സന്ദർശിക്കാൻ വളരെ നല്ല ജഗ്ഗയും അതിശയകരമാംവിധം ഉയർന്ന സ്ഥലവുമാണ്.
+MMS hears our output as    വളതെ മനോഹരമായ സ്ഥലമായ മാതാ യാഗ്ഞിയുടെ ദർ്ബാ സന്ദശിക്കാൻ വളറെ മികച്ച സ്ഥലവും അതിശേകരമായ മലകേത്ത സ്ഥലവുമാണ്
+
+voice similarity to B (reference clip): TTS 0.089 | original MeanVC 0.758 | ours 0.788   (two real clips of B: 0.760)
+similarity to A (leakage):              ours -0.012   (A vs B before: 0.026)

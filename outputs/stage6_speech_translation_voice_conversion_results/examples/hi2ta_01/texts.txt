@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4257196900365559   clip hi_te00000_0088 (8.9 s)
+speaker B (voice)   ta_S4259519400365771   clip ta_te00000_0195 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            तो हम सभी को यह प्रयत्न करना चइये कि तालाब नदियों आदि को दूषित होने से बचाएँ क्यूंकि ये हमारी ही कार्य में आएगी
+recognised (IndicConformer) तो हम सभी को ये प्रयत्न करना चाहिए कि तालाब नदियों आदि को दूषित होने से बचाएँ क्योंकि ये हमारे ही कार्य में आएगी
+
+translation                எனவே குளங்கள் நதிகள் மற்றும் பலவற்றை மாசுபடுவதைத் தடுக்க நாம் அனைவரும் முயற்சி செய்ய வேண்டும், ஏனெனில் இது நம் சொந்த வேலையில் வரும்.
+translation of real text   எனவே குளங்கள் நதிகளை மாசுபடுத்துவதிலிருந்து பாதுகாக்க நாம் அனைவரும் முயற்சி செய்ய வேண்டும், ஏனெனில் இது நம் சொந்த வேலையில் வரும்.
+MMS hears our output as    எனவே குழங்கள் நதிகள் மற்றும் பலவற்றை மாசுபடுவதைத் தடுக்க நாம் அனைவரும் முயற்சி செய்ய வேண்டும் ஏனெனில் இது நாம் சொந்த வேலையில் வரும்
+
+voice similarity to B (reference clip): TTS 0.186 | original MeanVC 0.644 | ours 0.760   (two real clips of B: 0.842)
+similarity to A (leakage):              ours 0.031   (A vs B before: 0.071)

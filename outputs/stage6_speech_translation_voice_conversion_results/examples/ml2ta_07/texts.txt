@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4256324400328999   clip ml_te00000_0051 (5.3 s)
+speaker B (voice)   ta_S4256620800339114   clip ta_te00000_0018 (reference)
+language detected   Malayalam (100% of letters)
+
+real transcript            പലരും എന്നോട് പറയാന് പറയാറുള്ളത് ആ ക്യാമറയെ തരോ എന്നാണ്
+recognised (IndicConformer) പലരും എന്നോട് പറയാനുള്ള പറയാറുള്ളത് ആ ക്യാമറയെ തരുമോ എന്നാണ്
+
+translation                அந்த கேமராவை தருகிறீர்களா என்று பலர் என்னிடம் கூறுகிறார்கள்.
+translation of real text   அந்த கேமராவைக் கொடுங்கள் என்று பலர் என்னிடம் கூறுகிறார்கள்.
+MMS hears our output as    அந்தக்கேமராவைத் தழுகிறீர்களா என்று பலர்கநிடம் கூறுகிறார்கள்
+
+voice similarity to B (reference clip): TTS 0.216 | original MeanVC 0.682 | ours 0.700   (two real clips of B: 0.800)
+similarity to A (leakage):              ours 0.150   (A vs B before: 0.135)

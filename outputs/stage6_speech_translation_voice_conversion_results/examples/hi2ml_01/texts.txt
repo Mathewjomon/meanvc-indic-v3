@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4258561600395718   clip hi_te00001_0024 (7.0 s)
+speaker B (voice)   ml_S4259631200357141   clip ml_te00001_0122 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            कि हम प्रातः का समय पहले घर के सभी कामों से है न पहले सब घर के सभी लोगों को
+recognised (IndicConformer) कि हम प्रातः का समय पहले घर के सभी कामों से ना उसमें सब पहले सब घर के सभी लोगों को
+
+translation                പുലർച്ചെ ആദ്യം ഞങ്ങൾ വീട്ടിലെ എല്ലാ ജോലികളും ചെയ്യുന്നു, അല്ലെങ്കിൽ ആദ്യം ഞങ്ങൾ വീട്ടിലുള്ള എല്ലാ ആളുകളും ചെയ്യുന്നു.
+translation of real text   പുലർച്ചെ നമ്മൾ ആദ്യം വീട്ടിലെ എല്ലാ ജോലികളിൽ നിന്നും പോകുന്നു, ആദ്യം വീട്ടിലെ എല്ലാ ആളുകളിൽ നിന്നും അല്ല.
+MMS hears our output as    പുലർച്ച് ആദ്യം ഞങ്ങൾ വീട്ടിലേത എല്ലാ ര്യോലികളും ചെയ്യുന്നു അല്ലെന്നിൽ ആദ്യം ഞങ്ങൾ വീട്ടിലുള്ള എല്ലാ ബളുകളും ചെയ്യുന്നു
+
+voice similarity to B (reference clip): TTS 0.145 | original MeanVC 0.500 | ours 0.717   (two real clips of B: 0.560)
+similarity to A (leakage):              ours 0.086   (A vs B before: 0.118)

@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4258010700366114   clip ml_te00000_0126 (7.5 s)
+speaker B (voice)   hi_S4259978700366892   clip hi_te00001_0186 (reference)
+language detected   Malayalam (96% of letters)
+
+real transcript            അപ്പം അതിന് അങ്ങനെ ചെയ്യണം എവിടേലും കൊണ്ടുപോണം എന്നിട്ട് നൂല് മന്ത്രിച്ച് കെട്ടണം അങ്ങനെയൊക്കെ പറയാറുണ്ട് അതൊക്കെ ഒരു അന്ധവിശ്വാസം തന്നെയാണ്
+recognised (IndicConformer) അപ്പോൾ അതിനങ്ങനെ ചെയ്യണം എവിടെയെങ്കിലും കൊണ്ടുപോകണം എന്നൊരു നൂല് മന്ത്രിച്ച് കെട്ടണം അങ്ങനെയൊക്കെ പറയാറുണ്ട് അതൊക്കെ ഒരു അന്ധവിശ്വാസം തന്നെയാണ്
+
+translation                फिर यह कहा जाता है कि इसे कहाँ ले जाना है और इसे कैसे ले जाना है, यह एक अंधविश्वास है।
+translation of real text   ऐसा कहा जाता है कि रोटी को कहीं भी ले जाना चाहिए और धागे को घुमा कर बांधना चाहिए, यह एक अंधविश्वास है।
+MMS hears our output as    फिर यह कहा जाता है कि किसे कहाँ ले जाना है और इसे कैसे लए जाना है यह एक अनधविश्‍वास है
+
+voice similarity to B (reference clip): TTS 0.091 | original MeanVC 0.683 | ours 0.767   (two real clips of B: 0.761)
+similarity to A (leakage):              ours 0.342   (A vs B before: 0.360)

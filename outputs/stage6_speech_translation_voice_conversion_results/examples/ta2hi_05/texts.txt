@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4259578000319738   clip ta_te00000_0212 (10.6 s)
+speaker B (voice)   hi_S4256942400332561   clip hi_te00000_0041 (reference)
+language detected   Tamil (100% of letters)
+
+real transcript            கோடைக்காலங்கள்ல பசங்களுக்கு வந்து லீவ் உடுவாங்க வெளியூர்ல சுற்றுலா வெளியில எங்க வேணுமோ போகலாம் மழ காலம்னா எங்கியும் வெள்லே போ முடியாது உள்ளேயா தான் இருக்கணும்
+recognised (IndicConformer) கோடைக்காலங்களில் பசங்களுக்கு வந்து லீவு விடுவாங்க வெளியூரில் சுற்றுலா வெளியில் எங்கே வேணுமோ போகலாம் மழை காலம்னால் எங்கே வெளிலே போக முடியாது உள்ளே தான் இருக்கணும்
+
+translation                गर्मी के मौसम में छुट्टी मनाने के लिए बाहर कहीं भी जाना चाहिए, लेकिन बारिश के मौसम में कहीं भी बाहर नहीं जाना चाहिए।
+translation of real text   गर्मी के मौसम में छुट्टी मनाने के लिए, आप कहीं और जा सकते हैं या बारिश के मौसम में कहीं भी नहीं जा सकते हैं।
+MMS hears our output as    धर्मी की मौसम में छोटी मनाने के लिए बाहर कहीं भी जाना चाहिए लेकिन कार्श की मौसम में कहीं भी बाहर नहीं जाना चाहिए
+
+voice similarity to B (reference clip): TTS -0.098 | original MeanVC 0.562 | ours 0.767   (two real clips of B: 0.892)
+similarity to A (leakage):              ours 0.226   (A vs B before: 0.250)

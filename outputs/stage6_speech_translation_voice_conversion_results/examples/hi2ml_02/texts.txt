@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4258354000329548   clip hi_te00000_0145 (5.4 s)
+speaker B (voice)   ml_S4259278700356316   clip ml_te00000_0188 (reference)
+language detected   Hindi (80% of letters)
+
+real transcript            तो अच्छा है लेकिन जो धार्मिक अंधविस्वास है जैसे भूत प्रेत का लगना
+recognised (IndicConformer) तो अच्छा है लेकिन जो धार्मिक अंधविश्वास हैं जैसे भूत प्रेत कालागनाथ
+
+translation                അതിനാൽ നല്ലത്, പക്ഷേ മതപരമായ അന്ധവിശ്വാസങ്ങൾ പ്രേതമായ കലഗനാഥിനെപ്പോലെയാണ്.
+translation of real text   അതിനാൽ നല്ലത്, പക്ഷേ പ്രേതം പോലെ തോന്നുന്ന മതപരമായ അന്ധവിശ്വാസം
+MMS hears our output as    അതിനാൽ നല്ലത് പക്ഷി മതപരമായ അന്ത വിശ്വാസങ്ങൾ പ്രയതമായ അലക നാതിനെപ പോലെയാണ്
+
+voice similarity to B (reference clip): TTS 0.192 | original MeanVC 0.717 | ours 0.778   (two real clips of B: 0.467)
+similarity to A (leakage):              ours 0.018   (A vs B before: 0.059)

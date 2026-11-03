@@ -1,0 +1,14 @@
+{
+  "epoch": 18,
+  "step": 42484,
+  "val_loss": 0.3721659796105491,
+  "val_mse": 0.17368660453293058,
+  "mel_error": {
+    "ml": 0.1761672280728817,
+    "ta": 0.18382894322276117,
+    "hi": 0.17062395736575126
+  },
+  "mel_error_avg": 0.1768733762204647,
+  "config": "config_200ms.json",
+  "encoder": "checkpoints/encoder_v3/encoder_best.pt"
+}

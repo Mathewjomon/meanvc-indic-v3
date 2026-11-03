@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4256820200338001   clip hi_te00000_0002 (5.6 s)
+speaker B (voice)   ta_S4259953800370105   clip ta_te00000_0287 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            क्योंकि वह ऐसा बात बोलते हैं जो हम नॉर्मल लोग नहीं समझ पाते हैं
+recognised (IndicConformer) क्योंकि वह ऐसा बात बोलते हैं जो हम नॉर्मल लोग नहीं समझ पाते हैं
+
+translation                ஏனென்றால் இயல்பான மக்கள் நம்மால் புரிந்து கொள்ள முடியாத ஒன்றைச் சொல்கிறார்.
+translation of real text   ஏனென்றால் இயல்பான மக்கள் நம்மால் புரிந்து கொள்ள முடியாத ஒன்றைச் சொல்கிறார்.
+MMS hears our output as    ஏனென்றால் ஏல் பாண மக்கள் நம்மால் புரிந்துகொள்ள முடியாத ஒண்டைச் சொல்கிறார்
+
+voice similarity to B (reference clip): TTS 0.267 | original MeanVC 0.549 | ours 0.653   (two real clips of B: 0.766)
+similarity to A (leakage):              ours 0.051   (A vs B before: 0.102)

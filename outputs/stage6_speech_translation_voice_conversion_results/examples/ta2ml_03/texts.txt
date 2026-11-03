@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4258842100383591   clip ta_te00000_0111 (8.0 s)
+speaker B (voice)   ml_S4259564300366216   clip ml_te00000_0044 (reference)
+language detected   Tamil (100% of letters)
+
+real transcript            சப்பாத்தி அந்தமாரி உணவு வகைகளதான் வந்து அவுங்க வந்து உட்கொள்றாங்க உடைகள பொறுத்த வரைக்கும் அதாவது அங்கருக்குற வானிலைய பொறு
+recognised (IndicConformer) சப்பாத்தி அந்த மாதிரி உணவு வகைகளை தான் வந்து அவங்க வந்து உட்கொள்கிறாங்க உடைகளை பொறுத்த வரைக்கும் அதாவது அங்கே இருக்கிற வானிலையை பொறுத்து
+
+translation                അവർ വരുന്നതും കഴിക്കുന്നതുമായ വസ്ത്രങ്ങളെ ആശ്രയിച്ച്, അതായത് അവിടെയുള്ള കാലാവസ്ഥയെ ആശ്രയിച്ച് ചപ്പാത്തി ആ തരത്തിലുള്ള ഭക്ഷണമാണ്.
+translation of real text   ചപ്പാത്തി ആൻഡമാറിൻറെ പാചകരീതികൾ അവയുടെ വസ്ത്രധാരണത്തിൻറെ കാര്യത്തിൽ അർത്ഥവത്തായ കാലാവസ്ഥയുടെ ഉത്തരവാദിത്തമാണ്.
+MMS hears our output as    അവർ വരുന്നതും കഴിക്കുന നതുമായ വസ്ത്രങ്ങളെ ആശ്രയിച്ച് അതായത് അവിടെയുള്ള കാലാസ്ഥയെ ആശ്രയിച്ച് ചെപ്പാത്തി ആ തരത്തിലുള്ള വക്ഷണമാണ്
+
+voice similarity to B (reference clip): TTS 0.159 | original MeanVC 0.588 | ours 0.771   (two real clips of B: 0.891)
+similarity to A (leakage):              ours 0.472   (A vs B before: 0.357)

@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4259267700356708   clip ml_te00000_0166 (8.3 s)
+speaker B (voice)   hi_S4259898600358163   clip hi_te00001_0151 (reference)
+language detected   Malayalam (100% of letters)
+
+real transcript            ഒരു തൊഴിൽ മേഖലയാണ് വീട്ടിലിരിക്കുന്നവർക്കൊരു തൊഴിൽ മേഖലയാണ് അതുപോലെ വീടും പരിസരവും വൃത്തിയായിട്ട് എപ്പൊഴും സൂക്ഷിക്കാനും കഴിയും അതുപോലെത്തന്നെ
+recognised (IndicConformer) ഒരു തൊഴിൽ മേഖലയാണ് വീട്ടിലിരിക്കുന്നവർക്കൊരു തൊഴിൽ മേഖലയാണ് അതുപോലെ വീടും പരിസരവും വൃത്തിയായിട്ട് എപ്പോഴും സൂക്ഷിക്കാനും കഴിയും അതുപോലെ തന്നെ
+
+translation                एक कार्य क्षेत्र उन लोगों के लिए एक कार्य क्षेत्र है जो घर में रहते हैं और हमेशा घर और पड़ोस को साफ-सुथरा रख सकते हैं।
+translation of real text   एक कार्य क्षेत्र उन लोगों के लिए एक कार्य क्षेत्र है जो घर में रहते हैं और घर और पड़ोस को हमेशा साफ-सुथरा रख सकते हैं।
+MMS hears our output as    एक कार्य क्षेत्रपूर्ण लोगों के लिए एक कार्य क्षेत्र है जो घर में रहते हैं और हमेशा घर और पड़ुस को साथ सूथा रख सकते हैं
+
+voice similarity to B (reference clip): TTS 0.181 | original MeanVC 0.648 | ours 0.726   (two real clips of B: 0.752)
+similarity to A (leakage):              ours 0.126   (A vs B before: 0.078)

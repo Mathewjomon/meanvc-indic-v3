@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4257213200305882   clip ml_te00000_0102 (8.3 s)
+speaker B (voice)   ta_S4256730700334621   clip ta_te00000_0049 (reference)
+language detected   Malayalam (100% of letters)
+
+real transcript            ഒരു ഇത് ഇണ്ട ഇണ്ടാവൊള്ളൂ കാരണം നമ്മള് എടക്കെടക്ക് അതായത് ഡെയിലി ഒരു രണ്ടുമൂന്നെണ്ണം ഒരു രണ്ട് മൂന്ന് പിക്ചറെങ്കിലും നമ്മൾ നോക്കി വരച്ചിരിക്കണം
+recognised (IndicConformer) ഒരു ഇതുണ്ടാവുക ഉണ്ടാവുകയുള്ളൂ കാരണം നമ്മൾ ഇടയ്ക്കിടയ്ക്ക് അതായത് ഡെയിലി ഒരു രണ്ട് മൂന്നെണ്ണ ഒരു രണ്ട് മൂന്ന് പിക്ചറെങ്കിലും നമ്മൾ നോക്കി വരച്ചിരിക്കണം
+
+translation                ஒன்று இருக்க வேண்டும், ஏனென்றால் நாம் அவ்வப்போது, குறைந்தபட்சம் ஒரு டெய்லி இரண்டு மூன்று அல்லது இரண்டு மூன்று படங்களைப் பார்த்து வரைந்திருக்க வேண்டும்.
+translation of real text   ஒரு இட் இன்டா இன்டாவோலு ஏனென்றால் நாம் குறைந்தபட்சம் ஒரு இரண்டும் மூன்றும் இரண்டும் மூன்று படங்களை வரைந்திருக்க வேண்டும், அதாவது ஒரு டெய்லி.
+MMS hears our output as    ஒந்டு இருக்கவேண்டும் எனந்தால் நாம் அமமப்போது குறைந்த வட்றும் ஒருடை இரண்டு ூன்டு அல்லது இரண்டு மூன்டு படங்களைப் பார்த்து வறைந்திருக்கவேண்டும்
+
+voice similarity to B (reference clip): TTS 0.247 | original MeanVC 0.800 | ours 0.795   (two real clips of B: 0.781)
+similarity to A (leakage):              ours 0.252   (A vs B before: 0.243)

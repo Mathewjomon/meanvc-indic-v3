@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4257878300397507   clip hi_te00000_0108 (6.6 s)
+speaker B (voice)   ta_S4259410500335240   clip ta_te00000_0165 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            ग्रेवी बनाई जाती है इसके बाद पनीर डाला जाता है मटर डाला जाता है मैंने खीर में बी बहोत सारे
+recognised (IndicConformer) ग्रेवी बनाई जाती है इसके बाद पनीर डाला जाता है मटर डाला जाता है मैंने खीर में भी बहुत सारे
+
+translation                கிரேவி தயாரிக்கப்படுகிறது, பின்னர் பாலாடைக்கட்டி சேர்க்கப்படுகிறது, பீட்ரூட் சேர்க்கப்படுகிறது, நான் பீர் நிறைய உள்ளது
+translation of real text   கிரேவி தயாரிக்கப்படுகிறது, பின்னர் பாலாடைக்கட்டி சேர்க்கப்படுகிறது, பீட் சேர்க்கப்படுகிறது, நான் பீர் நிறைய உள்ளது
+MMS hears our output as    கிரேவி தயாரிக்கப்படுகிறது பின்ட பாலாடைக் கட்டிசேர்க்கப்படுகிறது பீர்குன் சேர்க்கப்படுகிறது நான் ிபேர்கை உள்ளது
+
+voice similarity to B (reference clip): TTS 0.294 | original MeanVC 0.697 | ours 0.629   (two real clips of B: 0.830)
+similarity to A (leakage):              ours 0.054   (A vs B before: 0.053)

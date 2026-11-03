@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4258813000306083   clip ml_te00000_0139 (3.7 s)
+speaker B (voice)   hi_S4257120600367211   clip hi_te00000_0068 (reference)
+language detected   Malayalam (92% of letters)
+
+real transcript            ബിഡ്ഡ് ജില്ലയിൽ എനിക്ക് പെയ്ഡ് വാക്സിൻ എവിടെ നിന്ന് ലഭിക്കും
+recognised (IndicConformer) ബിഡ് ജില്ലയിൽ എനിക്ക് പെയ്ഡ് വാക്സിൻ എവിടെ നിന്ന് ലഭിക്കും
+
+translation                बीड जिले में मुझे भुगतान किया गया टीका कहाँ से मिल सकता है
+translation of real text   बोली जिले में मुझे भुगतान किया गया टीका कहाँ से मिल सकता है
+MMS hears our output as    बी जीली में मुझे इभुदान किया गया ी का कहाँ से मिल सकता है
+
+voice similarity to B (reference clip): TTS 0.257 | original MeanVC 0.537 | ours 0.697   (two real clips of B: 0.464)
+similarity to A (leakage):              ours 0.024   (A vs B before: 0.072)

@@ -1,0 +1,362 @@
+MeanVC-Indic v3: SYSTEM MODULES
+Speech translation + voice conversion between Malayalam, Tamil and Hindi
+=========================================================================
+
+This file describes every module in the architecture diagram
+(docs/system_architecture_implemented.png), in the order the data flows through them.
+For each module it gives:
+
+    TYPE      fine-tuned by us / pretrained and frozen / planned
+    INPUT     what goes into the module
+    PROCESS   what happens inside
+    OUTPUT    what comes out, and where it goes next
+    MODEL     the model file used
+    CODE      where it is in the project
+
+Running example used throughout: speaker A says a 5-second sentence in Malayalam, the user
+chooses Tamil as the target, and speaker B's recording gives the voice. The output is the
+sentence in Tamil, spoken in B's voice.
+
+Sizes are given for that 5-second input (16 kHz audio = 80,000 samples).
+
+
+-------------------------------------------------------------------------
+OVERVIEW
+-------------------------------------------------------------------------
+
+  speaker A's speech
+     -> [1] Source speech                (load, 16 kHz mono)
+     -> [2] Speaker separation           (PLANNED, not implemented)
+     -> [3] Language identification      (our encoder: which language?)
+     -> [4] Same language? decision
+           yes -> A's own speech goes straight to [8]   (separate tool convert.py)
+           no  -> [5] Speech recognition  (IndicConformer: speech -> text A)
+               -> [6] Machine translation (IndicTrans2:   text A -> text B)
+               -> [7] Text-to-speech      (MMS-TTS:       text B -> speech, generic voice)
+     -> [8] Streaming content encoder    (our encoder: speech -> BNF, "what is said")
+
+  speaker B's speech
+     -> [9]  Reference speech            (load, 16 kHz mono)
+     -> [10] Reference mel               ("how B sounds", frame by frame)
+     -> [11] Speaker encoder             (WavLM + ECAPA: "who B is", one vector)
+
+  [8] + [10] + [11] -> [12] Timbre encoder        (content dressed in B's timbre)
+  [12] + [11]       -> [13] Diffusion transformer (generates the mel of the new speech)
+  [13]              -> [14] Neural vocoder        (mel -> waveform)
+                    -> [15] Converted speech      (Tamil sentence, B's voice)
+
+  Words path:  A's speech -> text -> translated text -> TTS speech -> BNF
+  Voice path:  B's speech -> reference mel + speaker embedding
+  The two paths meet only in the timbre encoder and the DiT. A's voice never reaches the
+  voice converter, only A's words do.
+
+
+=========================================================================
+[1] SOURCE SPEECH (speaker A)
+=========================================================================
+TYPE      Input
+INPUT     A recording of speaker A in Malayalam, Tamil or Hindi: any file soundfile can read
+          (wav, flac, ...), any sample rate, mono or stereo. 3-15 s works best.
+PROCESS   - Read the file as float32 samples.
+          - Stereo is averaged to mono.
+          - Resampled to 16,000 Hz with a polyphase filter (scipy resample_poly).
+          - Values clipped to the range -1 ... +1.
+OUTPUT    Waveform: 16,000 numbers per second (80,000 for 5 s), float32.
+          -> [3] language identification (and [8] on the same-language path)
+CODE      load_wav() in code/infer/convert.py
+NOTE      The input must contain ONE speaker. Overlapping speakers are not handled yet (see [2]).
+
+
+=========================================================================
+[2] SPEAKER SEPARATION (overlapping speech)
+=========================================================================
+TYPE      PLANNED, NOT IMPLEMENTED
+INPUT     (planned) A recording where two or more people speak at the same time
+PROCESS   (planned) Split the mixture into one track per speaker, e.g. with a separation model,
+          and pass the chosen speaker's track on.
+OUTPUT    (planned) Speech of one speaker -> [3]
+STATUS    No code exists for this module. Today the waveform from [1] goes directly to [3].
+
+
+=========================================================================
+[3] LANGUAGE IDENTIFICATION
+=========================================================================
+TYPE      Fine-tuned by us (Stage 2)
+INPUT     Speaker A's waveform (16 kHz)
+PROCESS   1. Feature extraction: Kaldi filter-bank (fbank) features, 80 frequency bands every
+             10 ms, scaled x32768 (as in training). 5 s -> 500 x 80.
+          2. Our fine-tuned Fast-U2++ encoder: conv2d subsampling (x4, to 40 ms frames), then
+             7 Conformer layers (dimension 256, 4 attention heads, streaming convolution that
+             only looks at the past), processed in 200 ms chunks with 2 chunks of memory.
+          3. CTC head: for every 40 ms frame, a probability for each of the 174 tokens
+             (Malayalam, Tamil and Devanagari letters, space "▁", <blank>, <unk>, <sos/eos>).
+          4. Greedy decoding: take the most likely token per frame, merge repeats, remove
+             <blank> and <unk>, turn "▁" into a space -> a string of letters.
+          5. Script voting: every letter's Unicode name tells its script (MALAYALAM, TAMIL or
+             DEVANAGARI). The script with the most letters is the language. Its share of all
+             letters is the confidence.
+          6. If the confidence is below 60 %, the user is asked to confirm (command line).
+OUTPUT    Language code "ml" / "ta" / "hi", confidence (e.g. 0.97), letters per script.
+          -> [4] the decision, and [5] (IndicConformer must be told the language)
+          -> it also fixes the target menu: only the other two languages are offered
+MODEL     checkpoints/encoder_v3/best.pt (encoder + CTC head + attention decoder; the
+          attention decoder is not used here)
+CODE      Recognizer, identify_language() in code/translate/speech_translator.py
+RESULT    99.3 % correct on 300 test clips (Malayalam 100, Tamil 100, Hindi 98). 0.05 s per clip.
+
+
+=========================================================================
+[4] SAME LANGUAGE? (decision)
+=========================================================================
+TYPE      Program logic
+INPUT     Source language (from [3]) and the target language B chosen by the user
+          (--target ml/ta/hi/all, or a menu that only lists the two other languages)
+PROCESS   Compare the two.
+OUTPUT    no  (different languages) -> translate: [5] -> [6] -> [7] -> [8]
+          yes (same language)       -> no translation: A's own speech goes to [8]
+CODE      choose_targets() in speech_translator.py (translation tool: refuses the same
+          language and asks for a different one); the "yes" path is the separate
+          same-language tool code/infer/convert.py
+
+
+=========================================================================
+[5] SPEECH RECOGNITION (speech -> text A)
+=========================================================================
+TYPE      Pretrained, frozen (AI4Bharat IndicConformer 600M, multilingual)
+INPUT     Speaker A's waveform (16 kHz) + the language code from [3]
+PROCESS   1. Preprocessor (TorchScript): audio -> log-mel features.
+          2. Conformer encoder (ONNX): features -> acoustic representations per frame.
+          3. RNNT decoding (greedy): a prediction network (2-layer LSTM, 640 units) remembers the
+             letters written so far; a joint network combines it with each encoder frame and
+             a LANGUAGE-SPECIFIC output layer (here: Malayalam) picks the next letter, up to 10
+             letters per frame. "▁" becomes a space.
+          4. keep_script(): letters that came out in another script are transliterated into
+             the source script, and an invalid virama after a Malayalam chillu letter is removed.
+OUTPUT    Transcript: text in language A, e.g. a Malayalam sentence.  -> [6]
+MODEL     ai4bharat/indic-conformer-600m-multilingual (ONNX + TorchScript files, D:\hf_cache)
+CODE      IndicConformerRecognizer, keep_script() in speech_translator.py
+RUNS ON   CPU (ONNX Runtime), about 0.7 s per clip
+RESULT    CER 7.3 % / WER 22.8 % on 300 test clips (our own encoder: 26.2 % CER).
+          Options: --asr ours (the letters from [3]), --asr mms (Meta MMS-1b-all).
+
+
+=========================================================================
+[6] MACHINE TRANSLATION (text A -> text B)
+=========================================================================
+TYPE      Pretrained, frozen (AI4Bharat IndicTrans2 Indic-Indic, distilled, 320M)
+INPUT     Text in language A + source and target language codes (e.g. mal_Mlym -> tam_Taml)
+PROCESS   1. Pre-processing (IndicProcessor):
+             - normalise punctuation, turn Indic digits into 0-9
+             - replace numbers, e-mails and URLs by placeholders <ID1>, <ID2>, ...
+             - Indic normalisation and tokenisation
+             - transliterate Malayalam / Tamil script into Devanagari (the model's shared script)
+             - add the two language tags in front: "mal_Mlym tam_Taml <text>"
+          2. Tokeniser: text -> subword token ids.
+          3. Transformer encoder-decoder: beam search with 5 beams. The output is limited to about
+             twice the input length and may not repeat any 4-token sequence (prevents the model
+             from looping on noisy text).
+          4. Post-processing (IndicProcessor): restore the placeholders, transliterate Devanagari
+             back into the target script (Tamil), join tokens into normal text.
+OUTPUT    Translated text in language B, e.g. a Tamil sentence.  -> [7]
+MODEL     ai4bharat/indictrans2-indic-indic-dist-320M (D:\hf_cache)
+CODE      Translator in speech_translator.py; IndicProcessor in code/translate/indic_processor.py
+          (pure-Python copy; the official IndicTransToolkit does not install on Windows)
+RUNS ON   GPU, about 0.9 s
+RESULT    Translation agreement chrF 64.7 (vs the translation of the correct transcript).
+
+
+=========================================================================
+[7] TEXT-TO-SPEECH (text B -> speech B)
+=========================================================================
+TYPE      Pretrained, frozen (Meta MMS-TTS, one model per language)
+INPUT     Translated text in language B
+PROCESS   VITS, an end-to-end model:
+          1. Tokeniser: characters -> ids (characters the voice does not know are dropped).
+          2. Text encoder: reads the character sequence.
+          3. Duration predictor: decides how long each sound lasts.
+          4. Normalising flow + HiFi-GAN decoder: produces the waveform directly.
+          A fixed random seed makes the same text always give the same audio. Loud peaks are
+          scaled down to 0.95.
+OUTPUT    Speech in language B, 16 kHz, in the TTS model's own GENERIC voice
+          (right words, wrong voice: 0.17 similarity to B).  -> [8]
+MODEL     facebook/mms-tts-mal, -tam, -hin (D:\hf_cache)
+CODE      Synthesizer in speech_translator.py
+RUNS ON   GPU, about 1.6 s
+
+
+=========================================================================
+[8] STREAMING CONTENT ENCODER (speech -> BNF, "what is said")
+=========================================================================
+TYPE      Fine-tuned by us (Stage 2)
+INPUT     The speech whose WORDS are kept:
+            translation path:     the TTS speech from [7]
+            same-language path:   speaker A's own speech from [1]
+PROCESS   1. Kaldi fbank: 80 bands every 10 ms.
+          2. The same Conformer encoder as in [3] (encoder part only), run exactly as in
+             training and feature extraction:
+               - slices of 200 ms (20 fbank frames, with a 23-frame window)
+               - memory of the previous 2 slices (attention cache and convolution cache)
+               - streaming convolution (past only)
+          3. The encoder output is the BNF (bottleneck features). Because the encoder was trained
+             to recognise LETTERS (CTC + attention loss), the BNF describes the sounds and words
+             and carries little information about who is speaking.
+          4. BNF frames (40 ms) are repeated x4 to 10 ms, to line up with the mel frames.
+OUTPUT    BNF: 256 numbers every 10 ms, shape (1, T, 256), "what is said".  -> [12]
+          (5 s of speech: 125 frames of 40 ms -> 500 frames of 10 ms)
+MODEL     checkpoints/encoder_v3/encoder_best.pt (epoch 83)
+CODE      VoiceConverter.content() in code/infer/convert.py -> extract_bn() in
+          code/decoder/extract_features.py, stretch_bn() in code/decoder/train_dit.py
+
+
+=========================================================================
+[9] REFERENCE SPEECH (speaker B)
+=========================================================================
+TYPE      Input
+INPUT     Any recording of speaker B, in any of the three languages (--reference B.wav).
+          Without --reference, speaker A's own speech is used (same person, new language).
+          5-15 s works best: a longer reference gives a better copy of the voice.
+PROCESS   As in [1]: mono, 16 kHz, values in -1 ... +1.
+OUTPUT    B's waveform.  -> [10] reference mel, and [11] speaker encoder
+CODE      load_wav() in convert.py; SpeechTranslator.voice() in speech_translator.py
+
+
+=========================================================================
+[10] REFERENCE MEL ("how B sounds", in detail)
+=========================================================================
+TYPE      Signal processing (MeanVC's own settings, no learning)
+INPUT     B's waveform
+PROCESS   Mel spectrogram: short-time Fourier transform (FFT size 1024, window 640 samples =
+          40 ms, hop 160 samples = 10 ms), mapped onto 80 mel frequency bands.
+OUTPUT    Reference mel ("prompt"): 80 numbers every 10 ms, shape (1, T_ref, 80).
+          A 12 s reference gives 1,200 frames. It keeps the fine detail of B's timbre: how B's
+          vowels and consonants actually sound.  -> [12] timbre encoder
+CODE      MelSpectrogramFeatures (third_party/MeanVC/src/infer/infer_ref.py), loaded by
+          load_mel_extractor() in extract_features.py; used in VoiceConverter.voice()
+
+
+=========================================================================
+[11] SPEAKER ENCODER ("who B is", one vector)
+=========================================================================
+TYPE      Pretrained, frozen (WavLM-Large + ECAPA-TDNN)
+INPUT     B's waveform
+PROCESS   1. WavLM-Large, a large self-supervised speech model, turns the audio into rich
+             frame-level features.
+          2. ECAPA-TDNN, a speaker-verification network, combines all frames
+             (attentive statistics pooling) into one fixed-size vector.
+OUTPUT    Speaker embedding (x-vector): 256 numbers for the whole recording, shape (1, 256).
+          It describes B's overall voice identity: pitch range, gender and vocal-tract shape.
+          -> [12] timbre encoder AND [13] DiT
+          The same model also MEASURES the results: speaker similarity = cosine between two of
+          these vectors (output vs B, output vs A).
+MODEL     checkpoints/pretrained/wavlm_large_finetune.pth
+CODE      load_speaker_model() in extract_features.py; VoiceConverter.voice() / embed() in convert.py
+
+
+=========================================================================
+[12] TIMBRE ENCODER (content dressed in B's timbre)
+=========================================================================
+TYPE      Fine-tuned by us (Stage 4, part of the DiT checkpoint)
+INPUT     - BNF from [8]                         (query:  T x 256)
+          - reference mel from [10]              (keys and values: T_ref x 80)
+          - speaker embedding from [11]          (projected to 256 and added to the keys)
+PROCESS   MRTE (multi-reference timbre encoder): 2 cross-attention blocks, 4 heads.
+          - The speaker embedding is projected (linear layer 256 -> 256), repeated for every
+            reference frame, and joined to the reference mel, forming the KEYS.
+          - The reference mel frames are the VALUES.
+          - Each BNF frame (QUERY) "looks at" all reference frames and gathers the timbre
+            detail that matches the sound it represents: how B would say this sound.
+          - Each block: attention + residual connection + layer normalisation + feed-forward.
+OUTPUT    Timbre BNF: 256 numbers every 10 ms, shape (1, T, 256): what is said, coloured with
+          B's timbre.  -> [13]
+MODEL     timbre_encoder inside checkpoints/dit_v3/dit_best.pt
+CODE      MRTE in third_party/MeanVC/src/model/prompt_vp.py, called inside the DiT
+
+
+=========================================================================
+[13] DIFFUSION TRANSFORMER DECODER (generates the new speech, as a mel)
+=========================================================================
+TYPE      Fine-tuned by us (Stage 4)
+INPUT     - timbre BNF from [12]                    (T x 256)
+          - speaker embedding from [11]             (repeated for every frame)
+          - random noise in the shape of a mel      (T x 80), the starting point
+          - the already generated previous chunks   (KV cache)
+PROCESS   Generation with MEAN FLOWS, in only 2 steps:
+          1. Start from random noise shaped like a mel spectrogram.
+          2. For each step, the DiT predicts the average change (velocity) that moves the noise
+             towards real speech over the time interval of that step. Two time embeddings
+             (current time t and target time r) tell it which step it is on. Because it learned
+             the AVERAGE velocity of the whole interval, 2 steps are enough (normal diffusion
+             needs tens of steps).
+          3. Inside the network: the noisy mel, the timbre BNF and the speaker embedding are
+             concatenated per frame and projected to 512 dimensions, then go through 4
+             transformer blocks (dimension 512, 2 heads, rotary positions).
+          4. Streaming: the speech is generated 200 ms (20 frames) at a time. A key-value cache
+             keeps the earlier chunks, so each new chunk continues smoothly.
+OUTPUT    Mel spectrogram of the converted speech: 80 numbers every 10 ms, shape (T, 80),
+          values in -1 ... +1.  -> [14]
+MODEL     checkpoints/dit_v3/dit_best.pt (epoch 18, EMA weights), config_200ms.json
+CODE      generate() in code/decoder/train_dit.py; DiT with KV cache in
+          third_party/MeanVC/src/infer/dit_kvcache.py; called in VoiceConverter.convert()
+RESULT    Validation mel error 0.177 (0.260 for the original Mandarin model).
+
+
+=========================================================================
+[14] NEURAL VOCODER (mel -> waveform)
+=========================================================================
+TYPE      Pretrained, frozen (Vocos)
+INPUT     Mel spectrogram from [13], rescaled from (-1 ... +1) to (0 ... 1), shape (1, 80, T)
+PROCESS   Vocos predicts, for every frame, the magnitude and the phase of the short-time
+          spectrum (ConvNeXt network), then an inverse FFT turns them into audio samples.
+          The vocoder is loaded fresh for every conversion (it breaks after a failed call - a
+          lesson from v2). If the loudest sample exceeds 0.99, the whole clip is scaled down.
+OUTPUT    Waveform, 16 kHz.  -> [15]
+MODEL     checkpoints/pretrained/vocos.pt
+CODE      VoiceConverter.convert() in convert.py
+
+
+=========================================================================
+[15] CONVERTED SPEECH (the result)
+=========================================================================
+TYPE      Output
+INPUT     Waveform from [14]
+PROCESS   Saved as 16-bit PCM WAV, 16 kHz. Speaker similarity to B and to A is computed with
+          the speaker encoder [11].
+OUTPUT    Speaker A's sentence, translated into language B, in speaker B's voice.
+          Files in outputs/translate/<input>_to_<target>/:
+            input.wav      A's original speech
+            reference.wav  B's voice
+            tts.wav        the translation in the generic TTS voice (before conversion)
+            output.wav     THE RESULT
+            result.json    language, confidence, transcript, translation, times, similarities
+RESULT    (48 translations, test speakers never seen in training)
+          sounds like B 0.733 (two real recordings of B: 0.754) | leakage of A 0.173 |
+          intelligibility CER 9.5 % | DNSMOS 3.05 | 7.9 s for 7.7 s of speech on the laptop
+
+
+-------------------------------------------------------------------------
+DATA SIZES FOR THE 5-SECOND EXAMPLE
+-------------------------------------------------------------------------
+  waveform (A, TTS, output)   80,000 samples (16 kHz)
+  fbank                       500 frames x 80
+  CTC letters                 125 frames (one guess per 40 ms)
+  text                        one sentence of words
+  BNF                         125 x 256 (40 ms) -> stretched to 500 x 256 (10 ms)
+  reference mel (12 s of B)   1,200 x 80
+  speaker embedding           1 x 256
+  timbre BNF                  500 x 256
+  generated mel               500 x 80   (generated in 25 chunks of 200 ms, 2 steps each)
+
+
+-------------------------------------------------------------------------
+WHICH PARTS WE TRAINED
+-------------------------------------------------------------------------
+  Fine-tuned by us on Malayalam, Tamil, Hindi (IndicVoices-R, 30,000+ clips):
+    [3]  language identification   } the same Fast-U2++ encoder
+    [8]  streaming content encoder } (code/encoder/train_encoder.py)
+    [12] timbre encoder            } the MeanVC DiT
+    [13] diffusion transformer     } (code/decoder/train_dit.py)
+  Pretrained and frozen:
+    [5] IndicConformer, [6] IndicTrans2, [7] MMS-TTS, [10] mel settings, [11] WavLM + ECAPA,
+    [14] Vocos
+  Planned:
+    [2] speaker separation

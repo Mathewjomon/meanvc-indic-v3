@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4259451300377433   clip ml_te00000_0196 (5.9 s)
+speaker B (voice)   hi_S4257878300397507   clip hi_te00000_0113 (reference)
+language detected   Malayalam (100% of letters)
+
+real transcript            ചോറും ചമ്മന്തി വടുക് ഉണക്കമീന് പൊരിച്ചത് ഇതൊക്കെയാണ്
+recognised (IndicConformer) ചോറും ചമ്മന്തി വടു വടുക് ഉണക്ക് മീൻ പൊരിച്ചത്
+
+translation                चावल और चमगादड़ की निशानियों ने सूखी मछली को भुनाया
+translation of real text   यह सब चावल और चमगादड़ के टुकड़ों में पका हुआ है।
+MMS hears our output as    शावन और टमकादर की निशानियों ने सू खी मछली को बुनाया
+
+voice similarity to B (reference clip): TTS 0.190 | original MeanVC 0.588 | ours 0.723   (two real clips of B: 0.847)
+similarity to A (leakage):              ours 0.400   (A vs B before: 0.388)

@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4259640900333333   clip ta_te00000_0232 (4.0 s)
+speaker B (voice)   hi_S4259576300396472   clip hi_te00001_0072 (reference)
+language detected   Tamil (100% of letters)
+
+real transcript            இந்தியா பாகிஸ்தான் ஸ்ரீலங்கா நியூசிலாந்து ஆஸ்ட்ரேலியா
+recognised (IndicConformer) இந்தியா பாகிஸ்தான் ஸ்ரீலங்கா நியூசிலாந்து ஆஸ்திரேலியா
+
+translation                भारत पाकिस्तान श्रीलंका न्यूजीलैंड ऑस्ट्रेलिया
+translation of real text   भारत पाकिस्तान श्रीलंका न्यूजीलैंड ऑस्ट्रेलिया
+MMS hears our output as    भारत पाकिस्तान मश्रीलंकान यूजीलैन ऑस्ट्रेलिया
+
+voice similarity to B (reference clip): TTS -0.072 | original MeanVC 0.560 | ours 0.723   (two real clips of B: 0.909)
+similarity to A (leakage):              ours 0.241   (A vs B before: 0.132)

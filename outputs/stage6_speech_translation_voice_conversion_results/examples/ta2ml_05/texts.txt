@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4259953800370105   clip ta_te00000_0282 (9.3 s)
+speaker B (voice)   ml_S4258813000306083   clip ml_te00000_0150 (reference)
+language detected   Tamil (100% of letters)
+
+real transcript            அதனால் எந்த ஒரு தொழிலையும் நாம்பள் கஷ்டமென்று விட்டு விட்டால் நம்ப திரும்பி அந்த போன பணத்தையும் போன எடத்தையும் திருப்பியும் அடைய முடியாது அதனால்
+recognised (IndicConformer) அதனால் எந்த ஒரு தொழிலையும் நாம் கஷ்டம் என்று விட்டுவிட்டால் நம்ம திரும்பி அந்த போன பணத்தையும் போன இடத்தையும் திருப்பியும் அடைய முடியாது அதனால்
+
+translation                അതിനാൽ ഞങ്ങൾക്ക് ബുദ്ധിമുട്ടുള്ള ഒരു ബിസിനസ്സ് ഉപേക്ഷിക്കാൻ കഴിയുമെങ്കിൽ, ഞങ്ങൾക്ക് ആ പണവും നഷ്ടപ്പെട്ട സ്ഥലവും തിരികെ നേടാൻ കഴിയില്ല.
+translation of real text   അതിനാൽ ഞങ്ങൾക്ക് ബുദ്ധിമുട്ടുള്ള ഒരു ബിസിനസ്സ് ഉപേക്ഷിക്കാൻ കഴിയുമെങ്കിൽ, ഞങ്ങൾക്ക് വിശ്വസിക്കാനും നഷ്ടപ്പെട്ട പണവും നഷ്ടപ്പെട്ട ഭാരവും തിരികെ നേടാനും കഴിയില്ല.
+MMS hears our output as    അതിനാൽ ഞങ്ങൾക്ക് ബുദ്ധിമിട്ടുള്ള ഒരു വൈസനസ് ഉപേക്ഷിക്കാൻ കഴിയുമെങ്കിൽ ഞങ്ങൾക്ക് ആ പണവും നകഷ്ടപ്പെട്ടർ സ്ഥലവും തിരിക നേടാൻ കഴിയില്ല
+
+voice similarity to B (reference clip): TTS 0.161 | original MeanVC 0.552 | ours 0.673   (two real clips of B: 0.529)
+similarity to A (leakage):              ours 0.323   (A vs B before: 0.407)

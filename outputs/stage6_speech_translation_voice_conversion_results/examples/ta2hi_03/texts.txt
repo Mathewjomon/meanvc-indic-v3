@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4259519400365771   clip ta_te00000_0189 (5.7 s)
+speaker B (voice)   hi_S4258354000329548   clip hi_te00000_0153 (reference)
+language detected   Tamil (97% of letters)
+
+real transcript            குமரவேல் என்ற பெயருக்கு புரோக்கர் கட்டணமாக ரூபாய் பத்தாயிரம் சேர்க்கவும்
+recognised (IndicConformer) குமரவேல் என்ற பெயருக்கு புரோக்கர் கட்டணமாக ரூபாய் பத்தாயிரம் சேர்க்கவும்
+
+translation                कुमारवेल नाम के लिए दलाल शुल्क के रूप में दस हजार रुपये जोड़ें
+translation of real text   कुमारवेल नाम के लिए दलाल शुल्क के रूप में दस हजार रुपये जोड़ें
+MMS hears our output as    कुमारवेल नाम के लिए दलार शुरग के रूप में 10 0ज़ा0 टुबे जोड़े
+
+voice similarity to B (reference clip): TTS 0.167 | original MeanVC 0.640 | ours 0.723   (two real clips of B: 0.886)
+similarity to A (leakage):              ours 0.215   (A vs B before: 0.369)

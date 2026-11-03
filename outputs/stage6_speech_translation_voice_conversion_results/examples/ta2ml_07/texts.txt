@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4259255100305814   clip ta_te00000_0133 (6.6 s)
+speaker B (voice)   ml_S4259267700356708   clip ml_te00000_0172 (reference)
+language detected   Tamil (100% of letters)
+
+real transcript            அப்றம் மண்வெட்டி அப்டின் பாத்தீங்கனா மண்வெட்டி எதுக்காக அப்டின்னா செடிக்கு தேவையான தண்ணீர வந்து வர வைக்கிறதுக்காக வாய்க்கால் வெட் பறிப்பாங்க
+recognised (IndicConformer) அப்புறம் மண்வெட்டி அப்படின்னு பார்த்திங்கன்னா மண்வெட்டி எதுக்காக அப்படின்னா செடிக்கு தேவையான தண்ணீரை வந்து வர வைக்கிறதுக்காக வாய்க்கால் பறிப்பாங்க
+
+translation                തുടർന്ന്, ചെടിക്ക് ആവശ്യമുള്ള വെള്ളം കൊണ്ടുവരാൻ വേണ്ടിയോ അല്ലെങ്കിൽ എന്തിനുവേണ്ടിയാണോ മൺപാത്രം ഒഴുകുന്നത് എന്ന് നോക്കുക.
+translation of real text   അപ്പോൾ മൺപാത്രം അബ്ദിൻ ബാത്തിംഗാന മൺപാത്രങ്ങൾ എന്തിനുവേണ്ടിയാണ് അബ്ദിന്ന ചെടിക്ക് ആവശ്യമായ വെള്ളം കൊണ്ടുവരാൻ അനുവദിക്കുന്നത് എന്നതിനെക്കുറിച്ച് നാവിഗേഷൻ വെറ്റ് വലിച്ചെറിയുന്നു.
+MMS hears our output as    കുടതനിറിച്ചടിക്ക് ആവശ്യമുള്ള വെള്ളം കൊണ്ടുവരാൻ വേണ്ടിയോ അല്ലെങ്കിൽ എന്തിനു വേണ്ടിയാണോ മൺപാത്രം ിഴുതുന്നത് എന്ന നോക്കുക
+
+voice similarity to B (reference clip): TTS 0.234 | original MeanVC 0.560 | ours 0.778   (two real clips of B: 0.620)
+similarity to A (leakage):              ours 0.358   (A vs B before: 0.333)

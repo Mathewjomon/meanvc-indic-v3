@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4259935800305390   clip ta_te00000_0252 (6.3 s)
+speaker B (voice)   hi_S4256820200338001   clip hi_te00000_0021 (reference)
+language detected   Tamil (89% of letters)
+
+real transcript            குணசேகர் தேவசகாயம் ஞானம்மாள் ஞானசேகரன் புஷ்பராஜ்
+recognised (IndicConformer) குணசேகர் தேவசகாயம் ஞானம்மாள் ஞானசேகரன் புஷ்பராஜ்
+
+translation                गुणशेखर देवसकयम ज्ञानम्मल ज्ञानशेखरन पुष्पराज
+translation of real text   गुणशेखर देवसकयम ज्ञानम्मल ज्ञानशेखरन पुष्पराज
+MMS hears our output as    गूशखर दिर्ज के मगैनुमल ज्ञान शहरेंट पुस्पराए
+
+voice similarity to B (reference clip): TTS 0.128 | original MeanVC 0.465 | ours 0.460   (two real clips of B: 0.727)
+similarity to A (leakage):              ours 0.062   (A vs B before: -0.000)

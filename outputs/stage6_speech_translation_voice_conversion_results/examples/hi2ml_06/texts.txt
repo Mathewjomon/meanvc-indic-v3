@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4259920000308452   clip hi_te00001_0161 (8.5 s)
+speaker B (voice)   ml_S4256368500328803   clip ml_te00000_0083 (reference)
+language detected   Hindi (95% of letters)
+
+real transcript            हिन्दू धर्म की संस्कृति में पूजा पाठ करना अपने आराध्यों की पूजा करना देवी देवताओं की पूजा करना
+recognised (IndicConformer) हिंदू धर्म की संस्कृति में पूजा पाठ करना अपने आराध्यों की पूजा करना देवी देवताओं की पूजा करना
+
+translation                ഹിന്ദുമത സംസ്കാരത്തിൽ പ്രാർത്ഥനകൾ നടത്തുക, നിങ്ങളുടെ ആരാധകരെ ആരാധിക്കുക, ദൈവങ്ങളെ ആരാധിക്കുക
+translation of real text   ഹിന്ദു മത സംസ്കാരത്തിൽ പ്രാർത്ഥനകൾ നടത്തുക, നിങ്ങളുടെ ആരാധകരെ ആരാധിക്കുക, ദൈവങ്ങളെ ആരാധിക്കുക
+MMS hears our output as    ഇന്നുമത സംസ്കാരത്തിൽ പ്രാർത്ഥനകൾ നടത്ത് നിങ്ങളുടെ ആരാധകരെ ആരാധിക്കുക ദൈവനിറെ ആരാധിക്കുക
+
+voice similarity to B (reference clip): TTS 0.189 | original MeanVC 0.610 | ours 0.735   (two real clips of B: 0.588)
+similarity to A (leakage):              ours 0.174   (A vs B before: 0.219)

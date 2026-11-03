@@ -1,0 +1,15 @@
+Tamil speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ta_S4259592300370250   clip ta_te00000_0220 (5.8 s)
+speaker B (voice)   hi_S4259920000308452   clip hi_te00001_0165 (reference)
+language detected   Tamil (91% of letters)
+
+real transcript            கொறைச்சி கொள்வதனாலையும் லாரி தொழில் மிகவும் லாபகராமான தொழிலா இருந்து இப்ப பின்னோக்கி போயிட்ருக்கு
+recognised (IndicConformer) குறைச்சிக்கொள்வதனாலையும் லாரி தொழிலும் மிகவும் லாபகரமாக தொழிலாக இருந்து இப்போ பின்னோக்கி போயிட்டுருக்கு
+
+translation                कम होने के साथ-साथ लॉरी उद्योग अब एक बहुत ही लाभदायक व्यवसाय बन गया है।
+translation of real text   डकैती उद्योग अब सबसे अधिक लाभदायक व्यवसाय से पीछे हट गया है।
+MMS hears our output as    कम होने के साथ साथ सलारी उद्योग आप एक बहुत ही लावदायक व्यवसाय बन तिया है
+
+voice similarity to B (reference clip): TTS 0.195 | original MeanVC 0.528 | ours 0.588   (two real clips of B: 0.861)
+similarity to A (leakage):              ours 0.204   (A vs B before: 0.344)

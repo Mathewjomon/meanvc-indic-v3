@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Malayalam, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4257120600367211   clip hi_te00000_0065 (10.5 s)
+speaker B (voice)   ml_S4259502200366806   clip ml_te00001_0054 (reference)
+language detected   Tamil (60% of letters)
+
+real transcript            कि मकान बनाना फ्लैट बनाना डुप्लेक्स बनाना और बड़ी बड़ी मल्टिया बनाना और प्लाटिंग करना
+recognised (IndicConformer) க மக்கானல பண்ணானா டபல பண்ணான மல்டையா பண்ணான ப்ளாட்டிங் கரா
+
+translation                കാ മക്കാനാല പന്നാന ഇരട്ട നിറമുള്ള മൾട്ടയാ നിറമുള്ള ബ്ലാറ്റിംഗ് കരാ
+translation of real text   ഫ്ലാറ്റുകൾ നിർമ്മിക്കുക, ഡ്യൂപ്ലെക്കുകൾ സൃഷ്ടിക്കുക, വലിയ മൾട്ടിയകൾ ഉണ്ടാക്കുക, പ്ലാറ്റിംഗ് ചെയ്യുക എന്നിവയായിരുന്നു വീട് നിർമ്മിക്കേണ്ടത്.
+MMS hears our output as    കാമക്കാനാല പന്നാന് ഈ രെട്ട നിറമുള്ള മൾട്ടെ ആ നിറമുള്ള തിലാട്ടിന്ന്ക
+
+voice similarity to B (reference clip): TTS 0.059 | original MeanVC 0.509 | ours 0.718   (two real clips of B: 0.683)
+similarity to A (leakage):              ours 0.316   (A vs B before: 0.386)

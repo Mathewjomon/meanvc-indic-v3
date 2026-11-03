@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Hindi, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4259900100347536   clip ml_te00001_0187 (8.5 s)
+speaker B (voice)   hi_S4258561600395718   clip hi_te00001_0037 (reference)
+language detected   Malayalam (100% of letters)
+
+real transcript            പിന്ന ഉത്തരേന്ത്യയിൽ ആണെങ്കിൽ കൂടുതലായി വസ്ത്രങ്ങൾ ഉപയോഗിക്കുന്നത് സാരിയും അതേപോലെ
+recognised (IndicConformer) പിന്നെ ഉത്തരേന്ത്യയിലാണെങ്കിൽ കൂടുതലായി വസ്ത്രങ്ങൾ ഉപയോഗിക്കുന്നത് സാരിയും അതേപോലെ
+
+translation                और अगर उत्तर भारत में, तो कपड़े अधिक बार साड़ी के रूप में उपयोग किए जाते हैं।
+translation of real text   अगर उत्तर भारत में ऐसा होता है तो कपड़े अक्सर साड़ी के रूप में इस्तेमाल किए जाते हैं।
+MMS hears our output as    और अगर उत्तर भाद में तो कपड़े अधिक वात साड़ी के रूप में उपयोग किए जाते हैं
+
+voice similarity to B (reference clip): TTS 0.107 | original MeanVC 0.572 | ours 0.630   (two real clips of B: 0.451)
+similarity to A (leakage):              ours 0.273   (A vs B before: 0.327)

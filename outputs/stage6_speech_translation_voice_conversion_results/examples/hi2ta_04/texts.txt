@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4259978700366892   clip hi_te00001_0178 (7.7 s)
+speaker B (voice)   ta_S4259255100305814   clip ta_te00000_0141 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            हम डेश्टबिन भारत इस्टोर से लिए थे और जितना ही कूड़ा कचरा निकलता है हम डश्टबिन पे ही एस्तेमाल करते हैं उसी में डालते हैं
+recognised (IndicConformer) हम डस्टबिन भारत स्टोर से लिए थे और जितना ही कूड़ा कचरा निकलता है हम डस्टबिन पर ही इस्तेमाल करते हैं उसी में डालते हैं
+
+translation                நாங்கள் டஸ்ட்பின்களை பாரத் கடையில் இருந்து எடுத்துச் சென்றோம், மேலும் கழிவுகள் வெளியேறும் போது அவற்றை டஸ்ட்பின்களில் மட்டுமே பயன்படுத்துகிறோம்.
+translation of real text   நாங்கள் டஸ்ட்பின் பாரத் எஸ்டோரில் இருந்து எடுத்துச் சென்றோம், மேலும் கசிவு வெளியேறும் போது டஸ்ட்பினில் எஸ்டெமல் செய்யும் அளவுக்கு கழிவுகளை வைக்கிறோம்.
+MMS hears our output as    நாங்கள் கஸ்பின்களைப் பார் கடையில் இருந்து எடுத்துச் சென்றோம் மேலும் கழிவுகள் வெளியேறும்போது அவற்றை தஸ்பின்களில் மட்டுமே பயன்படுத்துகிறோம்
+
+voice similarity to B (reference clip): TTS 0.121 | original MeanVC 0.500 | ours 0.777   (two real clips of B: 0.804)
+similarity to A (leakage):              ours 0.219   (A vs B before: 0.293)

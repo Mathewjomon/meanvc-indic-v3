@@ -1,0 +1,15 @@
+Hindi speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  hi_S4256942400332561   clip hi_te00000_0031 (5.7 s)
+speaker B (voice)   ta_S4256817200333561   clip ta_te00000_0063 (reference)
+language detected   Hindi (100% of letters)
+
+real transcript            और दूसरे फिर दुकान पे देखा जाए तो वो सामान तो रखते हैं बट ज़ादातर वो मिलावट कर के रखते हैं जिसकी वजे से
+recognised (IndicConformer) और दूसरे से दुकान पर देखा जाए तो वो सामान तो रखते हैं बट क्योंकि ज़्यादातर वो मिलावट करके रखते हैं जिसकी वजह से
+
+translation                மற்றவர்கள் கடையில் பார்க்கும்போது, அவர்கள் பொருட்களை வைத்திருக்கிறார்கள், ஏனெனில் அவை பெரும்பாலும் கலவை செய்யப்பட்டவை.
+translation of real text   மற்றவர்கள் மீண்டும் கடையில் பார்க்கும்போது, அவர்கள் பொருட்களை வைத்திருப்பார்கள், ஆனால் அது பொருத்தமற்றதாக இருக்கும்போது அவற்றை கலக்க வைக்கிறார்கள்.
+MMS hears our output as    மற்றவர்கள் கடையில் பார்க்கும்போது அவர்கள் பொருட்கள வைத்திருக்கிறார்கள் ஏனெனில் அவைப் பெரும்பாலும் கலவை செய்யப்பட்டவை
+
+voice similarity to B (reference clip): TTS 0.168 | original MeanVC 0.767 | ours 0.805   (two real clips of B: 0.824)
+similarity to A (leakage):              ours -0.016   (A vs B before: -0.042)

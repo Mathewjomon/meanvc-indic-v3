@@ -1,0 +1,15 @@
+Malayalam speech of speaker A, translated into Tamil, spoken in the voice of speaker B
+
+speaker A (source)  ml_S4259278700356316   clip ml_te00000_0182 (5.8 s)
+speaker B (voice)   ta_S4257156700348229   clip ta_te00000_0079 (reference)
+language detected   Malayalam (100% of letters)
+
+real transcript            അത് നിറക്കുന്നതിനായിട്ട് ചെലവാവുന്നുണ്ട് അതൊരു വലിയ ബുദ്ധിമുട്ട് തന്നെയാണ് ഇന്ന് നേരിടുന്നത്
+recognised (IndicConformer) അത് നിറയ്ക്കുന്നതിനായിട്ട് ചിലവാകുന്നുണ്ട് അതൊരു വലിയ ബുദ്ധിമുട്ട് തന്നെയാണ് ഇന്ന് നേരിടുന്നത്
+
+translation                அதை நிரப்புவதற்கு செலவாகிறது, அது இன்று ஒரு பெரிய சிரமத்தை எதிர்கொள்கிறது.
+translation of real text   அதை நிரப்புவதற்கு செலவாகிறது, அது இன்று ஒரு பெரிய சிரமத்தை எதிர்கொள்கிறது.
+MMS hears our output as    அதை நேயப்போவதற்குச் செலவாக்கிறது அது இன்று ஒரு பெரிய செமத்தை எதி்கொள்கிறது
+
+voice similarity to B (reference clip): TTS 0.235 | original MeanVC 0.566 | ours 0.774   (two real clips of B: 0.637)
+similarity to A (leakage):              ours 0.432   (A vs B before: 0.389)
