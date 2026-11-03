@@ -258,7 +258,7 @@ CODE      load_speaker_model() in extract_features.py; VoiceConverter.voice() / 
 TYPE      Fine-tuned by us (Stage 4, part of the DiT checkpoint)
 INPUT     - BNF from [8]                         (query:  T x 256)
           - reference mel from [10]              (keys and values: T_ref x 80)
-          - speaker embedding from [11]          (projected to 256 and added to the keys)
+          - speaker embedding from [11]          (projected to 256 and joined to the keys)
 PROCESS   MRTE (multi-reference timbre encoder): 2 cross-attention blocks, 4 heads.
           - The speaker embedding is projected (linear layer 256 -> 256), repeated for every
             reference frame, and joined to the reference mel, forming the KEYS.
