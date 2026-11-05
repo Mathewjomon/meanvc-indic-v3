@@ -284,7 +284,7 @@ waveform (80,000)
  │ 4. conv2d subsampling ×4                        → 125 × 256  (one frame per 40 ms)
  │ 5. 7 Conformer layers, in 200 ms chunks         → 125 × 256
  ▼
-BNF "what is said"  → repeated ×4 →                  500 × 256  (one frame per 10 ms)
+BNF "what is said"  → stretched ×4 (linear) →        500 × 256  (one frame per 10 ms)
 ```
 
 **What happens:**
@@ -336,8 +336,9 @@ BNF "what is said"  → repeated ×4 →                  500 × 256  (one frame
    against 0.166 for two different people. In the translation pipeline the input is TTS speech, so speaker
    A's voice never reaches this module at all.
 
-**Output:** the **BNF**, 256 numbers every 40 ms (125 × 256). Each frame is repeated 4 times, giving 10 ms
-frames (500 × 256) that line up with the mel spectrogram the DiT produces. It goes to [12].
+**Output:** the **BNF**, 256 numbers every 40 ms (125 × 256). They are stretched 4× in time by **linear
+interpolation** (`stretch_bn()`, as in MeanVC), giving 10 ms frames (500 × 256) that line up with the mel
+spectrogram the DiT produces. It goes to [12].
 
 #### [9] Reference speech (speaker B)
 
@@ -427,8 +428,9 @@ coloured with B's timbre. It goes to [13].
 **Input:**
 - the **timbre BNF** from [12] (500 × 256);
 - the **speaker embedding** from [11], repeated for every frame;
-- **random noise** shaped like a mel spectrogram (500 × 80): the starting point;
-- the **already generated chunks** (key-value cache).
+- **random noise**, 20 × 80 per chunk, drawn fresh for each of the 25 chunks: the starting point;
+- the **previous chunk's generated mel**, and a **key-value cache** of the last 1 s (100 frames) of
+  earlier chunks.
 
 **What happens:**
 
@@ -436,16 +438,18 @@ coloured with B's timbre. It goes to [13].
    *direction* to move at each point and walks along the path in many small steps (often 10–50).
 2. **Mean flows.** MeanVC instead learns the **average direction over a whole interval** (from time *r*
    to time *t*). Knowing the average, it can jump the whole interval at once, so **2 steps** are
-   enough. That is what makes MeanVC fast.
+   enough: time goes **1.0 → 0.8 → 0.0**, a small first step and then one large jump to clean speech.
+   That is what makes MeanVC fast.
 3. **Inside each step:** the current noisy mel, the timbre BNF and the speaker embedding are **joined
    frame by frame** and projected to 512 numbers per frame. Two **time embeddings** (for *t* and *r*)
    tell the network where on the path it is.
 4. **4 transformer blocks** (dimension 512, 2 attention heads, rotary positions): self-attention lets each
    frame look at the other frames, so the speech is smooth and consistent, and the blocks output the
    direction to move the mel.
-5. **Streaming:** the mel is generated **200 ms (20 frames) at a time**. A **key-value cache** keeps what
-   the network computed for earlier chunks, so each new chunk continues smoothly from the last one
-   (25 chunks for 5 s).
+5. **Streaming:** the mel is generated **200 ms (20 frames) at a time** (25 chunks for 5 s), each chunk
+   from its own fresh noise. The previous chunk's mel is fed in with the new one, and a **key-value
+   cache** keeps what the network computed for the last **1 s (100 frames)**; older frames are dropped.
+   So each new chunk continues smoothly from the last one.
 
 **Output:** the **mel spectrogram** of the converted speech: 80 numbers every 10 ms (500 × 80), values in
 −1 … +1. It goes to [14].
@@ -549,7 +553,7 @@ Stage 6  translation      code/translate/    language ID ─► ASR ─► MT �
 | `encoder_v3/encoder_best.pt` | **Our content encoder** (epoch 83): used for voice conversion |
 | `encoder_v3/best.pt` | Our encoder **with its CTC and attention heads**: used for language ID |
 | `encoder_v3/epoch_81–83.pt`, `last.pt`, `log.csv`, `cmvn_from_pretrained.json`, `encoder_best.json` | Recent epochs, resume state, training log, feature normalisation, best-epoch info |
-| `encoder_v3_round1/` | The encoder after round 1 (epochs 47–49), kept for comparison |
+| `encoder_v3_round1/` | A copy of the encoder after epoch 49 (with epochs 47–49), kept for comparison |
 | `dit_v3/dit_best.pt` | **Our DiT + timbre encoder** (epoch 18, EMA weights) |
 | `dit_v3/dit_epoch_00–24.pt`, `last.pt`, `log.csv`, `dit_best.json` | Every epoch, resume state, training log, best-epoch info |
 
@@ -605,7 +609,7 @@ Stage 6  translation      code/translate/    language ID ─► ASR ─► MT �
 | **Language ID accuracy** | Step 1 | Detected language = real language, on all 300 test clips | Higher |
 | **CER** (character error rate) | Speech recognition | % of characters wrong vs the real transcript, after the training text cleaning. Reported against the **verbatim** (as spoken) and the **normalised** (standard spelling) transcript. | Lower |
 | **WER** (word error rate) | Speech recognition | The same, counted in words | Lower |
-| **Translation agreement (chrF, 0–100)** | Effect of recognition errors on translation | chrF (character n-gram F-score) between the translation of the recognised text and the translation of the **real** transcript. The test set has no human reference translations. | Higher |
+| **Translation agreement (chrF, 0–100)** | Effect of recognition errors on translation | Corpus-level chrF (character n-gram F-score, sacrebleu default) between the translation of the recognised text and the translation of the **real** transcript. The test set has no human reference translations. | Higher |
 | **Speaker similarity to B** | Voice conversion | Cosine similarity of WavLM-ECAPA speaker embeddings, output vs B's reference clip. 1 = identical voice. | Higher |
 | **Similarity on B's unseen clip** | Voice conversion (stricter) | The same, vs a clip of B the model never received | Higher |
 | **Leakage of A** | Voice conversion | Similarity of the output to speaker A, compared with how similar A and B are anyway | Lower |
@@ -698,7 +702,8 @@ Every value is an average, or a total error rate, over all of these clips.
   - our translation, from IndicConformer's transcript, and
   - the ideal translation, from the real (correct) transcript.
 - **How:** chrF (character n-gram F-score) counts how many letter-pieces of 1–6 letters the two
-  translations share, giving 0–100 (100 = identical).
+  translations share, giving 0–100 (100 = identical). It is computed over all 48 translations together
+  (corpus level, sacrebleu's default chrF, which weights recall twice as much as precision).
 - **Tested on:** 48 clips. **Better:** higher. **Our result: 64.7** (37.2 with our encoder, 46.9 with MMS).
 - **Why it matters:** it shows how much speech-recognition errors change the translation. It is not
   absolute translation accuracy: the test set has no human reference translations.
@@ -942,8 +947,8 @@ in the scripts.
 | Batch | Clips grouped by similar length, up to 60,000 fbank frames (about 600 s of audio) per batch |
 | Loss | 0.3 × CTC + 0.7 × attention |
 | Optimiser | Adam, peak learning rate 5e-4, 1,000 warm-up steps, then decay with 1/√step (Noam schedule); gradient clipping 5.0 |
-| Streaming | 200 ms chunks with 2 chunks of memory, streaming (past-only) convolution in all 7 layers |
-| Augmentation | Background noise, babble (other voices), SpecAugment |
+| Streaming | 80 % of batches use exactly 200 ms chunks with 2 chunks of memory (the setting used at conversion); 20 % use random chunk sizes for robustness. Streaming (past-only) convolution in all 7 layers. |
+| Augmentation | Half of the clips get coloured background noise or babble (another clip, quieter), plus random volume; then SpecAugment (2 time masks, 2 frequency masks) and a little dither on the fbank |
 | Best checkpoint | Epoch 83 (`encoder_v3/encoder_best.pt`) |
 | Training time | About 1.3 min per epoch on `train.tsv` and 1.8 min on `train_extra.tsv`, including validation: about **2 hours** in total |
 
@@ -967,7 +972,7 @@ Progress (validation CER %, lower is better):
 | Starting point | Mandarin MeanVC (`pretrained/model_200ms.safetensors`): DiT with timbre encoder, 14.1 M parameters, all 114 tensors loaded and verified |
 | Training data | Stage 3 features of 71,539 clips, 1,808 speakers, 164 h (Tamil 31,761, Malayalam 24,778, Hindi 15,000) |
 | Validation | 557 clips from 24 unseen speakers; real streaming generation on 60 of them after every epoch |
-| Inputs per clip | A random 5 s piece: BNF from our encoder, its mel and the speaker embedding, plus a 20 s voice prompt from **other** clips of the same speaker |
+| Inputs per clip | A random window of up to 5 s (cut to whole 200 ms chunks, a new window every epoch): BNF from our encoder, its mel and the speaker embedding, plus a 20 s voice prompt from **other** clips of the same speaker |
 | Batch | 32 clips (2,236 batches per epoch) |
 | Loss | MeanVC's mean-flow loss |
 | Optimiser | AdamW, weight decay 0.01, 1,000 warm-up steps, gradient clipping 1.0 |

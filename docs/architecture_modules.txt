@@ -200,7 +200,8 @@ PROCESS   1. Kaldi fbank: 80 bands every 10 ms.
           3. The encoder output is the BNF (bottleneck features). Because the encoder was trained
              to recognise LETTERS (CTC + attention loss), the BNF describes the sounds and words
              and carries little information about who is speaking.
-          4. BNF frames (40 ms) are repeated x4 to 10 ms, to line up with the mel frames.
+          4. BNF frames (40 ms) are stretched x4 to 10 ms by linear interpolation, to line up
+             with the mel frames.
 OUTPUT    BNF: 256 numbers every 10 ms, shape (1, T, 256), "what is said".  -> [12]
           (5 s of speech: 125 frames of 40 ms -> 500 frames of 10 ms)
 MODEL     checkpoints/encoder_v3/encoder_best.pt (epoch 83)
@@ -278,20 +279,21 @@ CODE      MRTE in third_party/MeanVC/src/model/prompt_vp.py, called inside the D
 TYPE      Fine-tuned by us (Stage 4)
 INPUT     - timbre BNF from [12]                    (T x 256)
           - speaker embedding from [11]             (repeated for every frame)
-          - random noise in the shape of a mel      (T x 80), the starting point
-          - the already generated previous chunks   (KV cache)
+          - random noise, 20 x 80 per chunk         (fresh for each 200 ms chunk), the starting point
+          - the previous chunk's generated mel, and a KV cache of the last 1 s (100 frames)
 PROCESS   Generation with MEAN FLOWS, in only 2 steps:
-          1. Start from random noise shaped like a mel spectrogram.
+          1. For each 200 ms chunk, start from fresh random noise (20 x 80).
           2. For each step, the DiT predicts the average change (velocity) that moves the noise
              towards real speech over the time interval of that step. Two time embeddings
              (current time t and target time r) tell it which step it is on. Because it learned
              the AVERAGE velocity of the whole interval, 2 steps are enough (normal diffusion
-             needs tens of steps).
+             needs tens of steps): time goes 1.0 -> 0.8 -> 0.0.
           3. Inside the network: the noisy mel, the timbre BNF and the speaker embedding are
              concatenated per frame and projected to 512 dimensions, then go through 4
              transformer blocks (dimension 512, 2 heads, rotary positions).
-          4. Streaming: the speech is generated 200 ms (20 frames) at a time. A key-value cache
-             keeps the earlier chunks, so each new chunk continues smoothly.
+          4. Streaming: the speech is generated 200 ms (20 frames) at a time. The previous chunk's
+             mel is fed in with the new one, and a key-value cache keeps the last 1 s (100 frames)
+             of earlier chunks, so each new chunk continues smoothly.
 OUTPUT    Mel spectrogram of the converted speech: 80 numbers every 10 ms, shape (T, 80),
           values in -1 ... +1.  -> [14]
 MODEL     checkpoints/dit_v3/dit_best.pt (epoch 18, EMA weights), config_200ms.json
@@ -344,13 +346,14 @@ DATA SIZES FOR THE 5-SECOND EXAMPLE
   reference mel (12 s of B)   1,200 x 80
   speaker embedding           1 x 256
   timbre BNF                  500 x 256
+  noise                       20 x 80 per chunk, fresh for each of the 25 chunks
   generated mel               500 x 80   (generated in 25 chunks of 200 ms, 2 steps each)
 
 
 -------------------------------------------------------------------------
 WHICH PARTS WE TRAINED
 -------------------------------------------------------------------------
-  Fine-tuned by us on Malayalam, Tamil, Hindi (IndicVoices-R, 30,000+ clips):
+  Fine-tuned by us on Malayalam, Tamil, Hindi (IndicVoices-R, 71,556 clips, 164 h):
     [3]  language identification   } the same Fast-U2++ encoder
     [8]  streaming content encoder } (code/encoder/train_encoder.py)
     [12] timbre encoder            } the MeanVC DiT

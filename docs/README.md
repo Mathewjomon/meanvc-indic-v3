@@ -200,7 +200,8 @@ A fixed random seed makes the same text always give the same audio. Loud peaks a
 3. **The encoder output is the BNF** (bottleneck features). Because the encoder was trained to recognise
    **letters** (CTC + attention loss), the BNF describes the sounds and words and carries little
    information about who is speaking.
-4. **BNF frames (40 ms) are repeated ×4 to 10 ms**, to line up with the mel frames.
+4. **BNF frames (40 ms) are stretched ×4 to 10 ms by linear interpolation**, to line up with the mel
+   frames.
 
 ## [9] Reference speech (speaker B)
 
@@ -259,23 +260,25 @@ The same model also **measures** the results: speaker similarity = cosine betwee
 | | |
 |---|---|
 | **Type** | Fine-tuned by us (Stage 4) |
-| **Input** | Timbre BNF from [12] (T × 256)<br>Speaker embedding from [11] (repeated for every frame)<br>Random noise in the shape of a mel (T × 80), the starting point<br>The already generated previous chunks (KV cache) |
+| **Input** | Timbre BNF from [12] (T × 256)<br>Speaker embedding from [11] (repeated for every frame)<br>Random noise, 20 × 80 per chunk (drawn fresh for each 200 ms chunk), the starting point<br>The previous chunk's generated mel, and a KV cache of the last 1 s (100 frames) of earlier chunks |
 | **Output** | Mel spectrogram of the converted speech: 80 numbers every 10 ms, shape (T, 80), values in −1 … +1. → [14] |
 | **Model** | `checkpoints/dit_v3/dit_best.pt` (epoch 18, EMA weights), `config_200ms.json` |
 | **Code** | `generate()` in `code/decoder/train_dit.py`; DiT with KV cache in `third_party/MeanVC/src/infer/dit_kvcache.py`; called in `VoiceConverter.convert()` |
 | **Result** | Validation mel error 0.177 (0.260 for the original Mandarin model) |
 
 **Process** (generation with **mean flows**, in only 2 steps):
-1. Start from random noise shaped like a mel spectrogram.
+1. For each 200 ms chunk, start from fresh random noise (20 × 80).
 2. For each step, the DiT predicts the average change (velocity) that moves the noise towards real
    speech over the time interval of that step. Two time embeddings (current time *t* and target time *r*)
    tell it which step it is on. Because it learned the **average** velocity of the whole interval,
-   2 steps are enough (normal diffusion needs tens of steps).
+   2 steps are enough (normal diffusion needs tens of steps): time goes 1.0 → 0.8 → 0.0, a small first
+   step and then one large jump.
 3. Inside the network: the noisy mel, the timbre BNF and the speaker embedding are concatenated per frame
    and projected to 512 dimensions, then go through 4 transformer blocks (dimension 512, 2 heads, rotary
    positions).
-4. **Streaming:** the speech is generated 200 ms (20 frames) at a time. A key-value cache keeps the
-   earlier chunks, so each new chunk continues smoothly.
+4. **Streaming:** the speech is generated 200 ms (20 frames) at a time. The previous chunk's mel is fed
+   in with the new one, and a key-value cache keeps the last 1 s (100 frames) of earlier chunks, so each
+   new chunk continues smoothly.
 
 ## [14] Neural vocoder (mel → waveform)
 
@@ -322,12 +325,13 @@ Files in `outputs/translate/<input>_to_<target>/`:
 | Reference mel (12 s of B) | 1,200 × 80 |
 | Speaker embedding | 1 × 256 |
 | Timbre BNF | 500 × 256 |
+| Noise | 20 × 80 per chunk, fresh for each of the 25 chunks |
 | Generated mel | 500 × 80 (generated in 25 chunks of 200 ms, 2 steps each) |
 
 ## Which parts we trained
 
 | | Modules |
 |---|---|
-| **Fine-tuned by us** on Malayalam, Tamil, Hindi (IndicVoices-R, 30,000+ clips) | [3] language identification and [8] streaming content encoder: the same Fast-U2++ encoder (`code/encoder/train_encoder.py`)<br>[12] timbre encoder and [13] diffusion transformer: the MeanVC DiT (`code/decoder/train_dit.py`) |
+| **Fine-tuned by us** on Malayalam, Tamil, Hindi (IndicVoices-R, 71,556 clips, 164 h) | [3] language identification and [8] streaming content encoder: the same Fast-U2++ encoder (`code/encoder/train_encoder.py`)<br>[12] timbre encoder and [13] diffusion transformer: the MeanVC DiT (`code/decoder/train_dit.py`) |
 | **Pretrained and frozen** | [5] IndicConformer, [6] IndicTrans2, [7] MMS-TTS, [10] mel settings, [11] WavLM + ECAPA, [14] Vocos |
 | **Planned** | [2] speaker separation |
